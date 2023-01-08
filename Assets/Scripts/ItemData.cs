@@ -20,7 +20,7 @@ public class ItemData : MonoSingleton<ItemData>
     public Field max;
     public Field fieldPrice;
 
-    private void Start()
+    public void IDAwake()
     {
         /*field.runnerSpeed = standart.runnerSpeed - (factor.runnerSpeed * constant.runnerSpeed);
         fieldPrice.runnerSpeed = fieldPrice.runnerSpeed * factor.runnerSpeed;

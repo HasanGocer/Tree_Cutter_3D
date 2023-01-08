@@ -20,8 +20,8 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Button _settingBackButton;
     [SerializeField] private Button _soundButton, _vibrationButton;
 
-    public GameObject winPanel, failPanel;
-    [SerializeField] private Button _winPrizeButton, _failButton;
+    public GameObject winPanel;
+    [SerializeField] private Button _winPrizeButton;
     public Button winButton;
 
     public Text finishGameMoneyText;
@@ -31,10 +31,8 @@ public class Buttons : MonoSingleton<Buttons>
 
     private void Start()
     {
-        GameObject.FindObjectOfType<AdManager>().InitializeAds();
         ButtonPlacement();
         SettingPlacement();
-        levelText.text = GameManager.Instance.level.ToString();
     }
     public IEnumerator NoThanxOnActive()
     {
@@ -73,64 +71,31 @@ public class Buttons : MonoSingleton<Buttons>
         _vibrationButton.onClick.AddListener(VibrationButton);
         _winPrizeButton.onClick.AddListener(() => StartCoroutine(WinPrizeButton()));
         winButton.onClick.AddListener(() => StartCoroutine(WinButton()));
-        _failButton.onClick.AddListener(FailButton);
-        ObjectOpenSystem.Instance.newImageButton.onClick.AddListener(() => StartCoroutine(ObjectOpenSystem.Instance.NewImageButton()));
     }
 
 
     private void StartButton()
     {
-        SoundSystem.Instance.CallEffectStart();
-        GridReset.Instance.startButton();
         MarketSystem.Instance.GameStart();
         _startObject1.SetActive(true);
         _startPanel.SetActive(false);
-        MaterialSystem.Instance.rivalPlayer.material = MaterialSystem.Instance.RivalMaterials[GameManager.Instance.level % MaterialSystem.Instance.RivalMaterials.Count];
         GameManager.Instance.isStart = true;
-        RandomSystem.Instance.StartRandomSystem();
-        FightBarSystem.Instance.StartFightBar();
-        AnimControl.Instance.StartAnimencer();
-        FightBarSystem.Instance.StartBarPanel();
-        AdManager.Instance.bannerView.Hide();
     }
     private IEnumerator WinPrizeButton()
     {
-        if (Application.internetReachability != NetworkReachability.NotReachable && AdManager.Instance.IsReadyInterstitialAd())
-        {
-            SoundSystem.Instance.CallEffectFinish();
-            AdManager.Instance.interstitial.Show();
-            BarSystem.Instance.BarStopButton();
-            winButton.enabled = false;
-            _winPrizeButton.enabled = false;
-            MarketSystem.Instance.FinishGameBackToTheMaterial();
-            Vibration.Vibrate(30);
-            yield return new WaitForSeconds(3);
-            if (!LevelSystem.Instance.newObjectTime)
-                SceneManager.LoadScene(0);
-            else
-                ObjectOpenSystem.Instance.NewObjectOpenPanel();
-        }
+        BarSystem.Instance.BarStopButton();
+        winButton.enabled = false;
+        _winPrizeButton.enabled = false;
+        Vibration.Vibrate(30);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(0);
     }
     private IEnumerator WinButton()
     {
-        SoundSystem.Instance.CallEffectFinish();
         MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.addedMoney);
-        LevelSystem.Instance.NewLevelCheckField();
         winButton.enabled = false;
         _winPrizeButton.enabled = false;
-        MarketSystem.Instance.FinishGameBackToTheMaterial();
         yield return new WaitForSeconds(1.3f);
-        if (!LevelSystem.Instance.newObjectTime)
-            SceneManager.LoadScene(0);
-        else
-            ObjectOpenSystem.Instance.NewObjectOpenPanel();
-    }
-    private void FailButton()
-    {
-        if (Application.internetReachability != NetworkReachability.NotReachable && AdManager.Instance.IsReadyInterstitialAd())
-            AdManager.Instance.interstitial.Show();
-        SoundSystem.Instance.CallEffectFail();
-        MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.addedMoney);
         SceneManager.LoadScene(0);
     }
     private void SettingButton()
