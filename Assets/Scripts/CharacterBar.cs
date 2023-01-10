@@ -26,7 +26,9 @@ public class CharacterBar : MonoBehaviour
             yield return new WaitForEndOfFrame();
             if (bar.fillAmount == finish)
             {
-                MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.addedMoney);
+                MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth);
+                //text
+                bar.fillAmount = 0;
                 break;
             }
         }

@@ -36,6 +36,8 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         ObjectID objectID = obj.GetComponent<ObjectID>();
         objectID.lineCount = lineCount;
         objectID.ColumnCount = columnCount;
+        if (lineCount == 6)
+            RandomSystem.Instance.arrays.EquipInt = obj.GetComponent<ObjectID>().objectID;
     }
 
     public void ObjectShake(GameObject obj)

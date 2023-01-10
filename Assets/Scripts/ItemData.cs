@@ -9,7 +9,7 @@ public class ItemData : MonoSingleton<ItemData>
     [System.Serializable]
     public class Field
     {
-
+        public int maxTreeHealth;
     }
 
     public Field field;
