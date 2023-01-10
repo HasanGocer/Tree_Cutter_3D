@@ -39,7 +39,7 @@ public class ItemData : MonoSingleton<ItemData>
             field.runnerSpeed = max.runnerSpeed;
         }*/
 
-
+        GameSystem.Instance.StartCutter();
     }
 
     /*public void RunnerCount()

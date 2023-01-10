@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class ObjectID : MonoBehaviour
 {
-    public bool isTouch;
     public int objectID, ListCount, lineCount, ColumnCount;
 }
