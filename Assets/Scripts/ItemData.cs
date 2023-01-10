@@ -9,7 +9,7 @@ public class ItemData : MonoSingleton<ItemData>
     [System.Serializable]
     public class Field
     {
-        public int maxTreeHealth;
+        public int maxTreeHealth, axeCount;
     }
 
     public Field field;
@@ -22,44 +22,46 @@ public class ItemData : MonoSingleton<ItemData>
 
     public void IDAwake()
     {
-        /*field.runnerSpeed = standart.runnerSpeed - (factor.runnerSpeed * constant.runnerSpeed);
-        fieldPrice.runnerSpeed = fieldPrice.runnerSpeed * factor.runnerSpeed;
+        field.maxTreeHealth = standart.maxTreeHealth + (factor.maxTreeHealth * constant.maxTreeHealth);
+        fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth * factor.maxTreeHealth;
+        field.axeCount = standart.axeCount + (factor.axeCount * constant.axeCount);
+        fieldPrice.axeCount = fieldPrice.axeCount * factor.axeCount;
 
-        field.runnerCount = standart.runnerCount + (factor.runnerCount * constant.runnerCount);
-        fieldPrice.runnerCount = fieldPrice.runnerCount * factor.runnerCount;
+        if (field.maxTreeHealth > maxFactor.maxTreeHealth)
+            field.maxTreeHealth = maxFactor.maxTreeHealth;
+        if (field.axeCount > maxFactor.axeCount)
+            field.axeCount = maxFactor.axeCount;
 
-        if (field.runnerCount > max.runnerCount)
-        {
-            field.runnerCount = max.runnerCount;
-        }
-
-
-        if (field.runnerSpeed < max.runnerSpeed)
-        {
-            field.runnerSpeed = max.runnerSpeed;
-        }*/
 
         GameSystem.Instance.StartCutter();
+        TreeManager.Instance.StartTreeManager();
     }
 
-    /*public void RunnerCount()
+    public void SetMaxTreeHealth()
     {
-        field.runnerCount = standart.runnerCount + (factor.runnerCount * constant.runnerCount);
+        field.maxTreeHealth++;
 
-        if (field.runnerCount > max.runnerCount)
-        {
-            field.runnerCount = max.runnerCount;
-        }
+        field.maxTreeHealth = standart.maxTreeHealth + (factor.maxTreeHealth * constant.maxTreeHealth);
+        fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth * factor.maxTreeHealth;
+
+        if (field.maxTreeHealth > maxFactor.maxTreeHealth)
+            field.maxTreeHealth = maxFactor.maxTreeHealth;
+
+        GameManager.Instance.FactorPlacementWrite(factor);
     }
 
-
-    public void RunnerSpeed()
+    public void SetAxeCount()
     {
-        field.runnerSpeed = standart.runnerSpeed - (factor.runnerSpeed * constant.runnerSpeed);
+        field.axeCount++;
 
-        if (field.runnerSpeed < max.runnerSpeed)
-        {
-            field.runnerSpeed = max.runnerSpeed;
-        }
-    }*/
+        field.axeCount = standart.axeCount + (factor.axeCount * constant.axeCount);
+        fieldPrice.axeCount = fieldPrice.axeCount * factor.axeCount;
+
+        if (field.axeCount > maxFactor.axeCount)
+            field.axeCount = maxFactor.axeCount;
+
+        TreeManager.Instance.AxeChange();
+
+        GameManager.Instance.FactorPlacementWrite(factor);
+    }
 }

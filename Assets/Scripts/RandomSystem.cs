@@ -54,6 +54,14 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         ObjectPool.Instance.AddObject(_OPObjectCount, obj);
     }
 
+    public void NewObjectUgrade(int ID, int xDÝstance, int zDistance)
+    {
+        GameObject obj = GetObject(_OPObjectCount + ID);
+        AddList(obj, ObjectList);
+        ObjectIDPlacement(ID, obj, ObjectList);
+        MaterialPlacement(obj, ID);
+        ObjectPositionPlacement(obj, _objectPosTemplate, xDÝstance, zDistance);
+    }
     public void NewObjectSpawn()
     {
         NewObject(_OPObjectCount, _xDÝstance, _zDÝstance, _objectPosTemplate, ObjectList);
@@ -142,7 +150,10 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         ObjectID objectID = obj.GetComponent<ObjectID>();
         objectID.lineCount = tempX;
         objectID.ColumnCount = tempZ;
-        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempX * _scale, objectPosTemplate.transform.position.y, objectPosTemplate.transform.position.z + tempZ * _scale);
+        if (tempX != 6)
+            obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempX * _scale, objectPosTemplate.transform.position.y, objectPosTemplate.transform.position.z + tempZ * _scale);
+        else
+            obj.transform.position = _objectEquipPosTemplate.transform.position;
     }
     private void ObjectPositionEquipPlacement(GameObject obj, GameObject objectPosTemplate)
     {

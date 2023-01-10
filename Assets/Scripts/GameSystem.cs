@@ -15,7 +15,7 @@ public class GameSystem : MonoSingleton<GameSystem>
             if (RandomSystem.Instance.arrays.EquipBool)
             {
                 CutterUpper();
-                //anim
+                AnimController.Instance.CallIdleAnim();
                 yield return new WaitForSeconds(1 / focusObjectID.objectID);
             }
         }

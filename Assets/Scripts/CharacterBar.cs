@@ -27,6 +27,7 @@ public class CharacterBar : MonoBehaviour
             if (bar.fillAmount == finish)
             {
                 MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth);
+                ItemData.Instance.SetMaxTreeHealth();
                 //text
                 bar.fillAmount = 0;
                 break;
