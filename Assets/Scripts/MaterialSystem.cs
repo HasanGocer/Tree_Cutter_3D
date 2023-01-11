@@ -5,5 +5,5 @@ using UnityEngine.UI;
 
 public class MaterialSystem : MonoSingleton<MaterialSystem>
 {
-    public List<Material> Materials = new List<Material>();
+    // public List<Material> Materials = new List<Material>();
 }

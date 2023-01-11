@@ -14,6 +14,12 @@ public class GameSystem : MonoSingleton<GameSystem>
             yield return null;
             if (RandomSystem.Instance.arrays.EquipBool)
             {
+                if (focusObjectID.lineCount != 6)
+                {
+                    RandomSystem.Instance.arrays.EquipBool = false;
+                    focusObjectID = null;
+                }
+
                 CutterUpper();
                 AnimController.Instance.CallIdleAnim();
                 yield return new WaitForSeconds(1 / focusObjectID.objectID);

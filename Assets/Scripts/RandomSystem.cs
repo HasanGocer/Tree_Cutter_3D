@@ -37,7 +37,12 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         objectID.lineCount = lineCount;
         objectID.ColumnCount = columnCount;
         if (lineCount == 6)
+        {
             RandomSystem.Instance.arrays.EquipInt = obj.GetComponent<ObjectID>().objectID;
+            GameSystem.Instance.focusObjectID = objectID;
+            arrays.EquipBool = true;
+            arrays.EquipInt = objectID.objectID;
+        }
     }
 
     public void ObjectShake(GameObject obj)
@@ -59,7 +64,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         GameObject obj = GetObject(_OPObjectCount + ID);
         AddList(obj, ObjectList);
         ObjectIDPlacement(ID, obj, ObjectList);
-        MaterialPlacement(obj, ID);
         ObjectPositionPlacement(obj, _objectPosTemplate, xDÝstance, zDistance);
     }
     public void NewObjectSpawn()
@@ -85,7 +89,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         GameObject obj = GetObject(OPObjectCount);
         AddList(obj, objects);
         ObjectIDPlacement(ID, obj, objects);
-        MaterialPlacement(obj, ID);
         ObjectPositionEquipPlacement(obj, objectPosTemplate);
     }
     private void objectPlacement(int OPObjectCount, int ID, int xDÝstance, int zDistance, GameObject objectPosTemplate, List<GameObject> objects)
@@ -93,7 +96,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         GameObject obj = GetObject(OPObjectCount);
         AddList(obj, objects);
         ObjectIDPlacement(ID, obj, objects);
-        MaterialPlacement(obj, ID);
         ObjectPositionPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
     }
     private void NewObject(int OPObjectCount, int xDÝstance, int zDistance, GameObject objectPosTemplate, List<GameObject> objects)
@@ -102,7 +104,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         GameObject obj = GetObject(OPObjectCount);
         AddList(obj, objects);
         ObjectIDPlacement(ID, obj, objects);
-        MaterialPlacement(obj, ID);
         ObjectPositionRandomPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
     }
     private GameObject GetObject(int OPObjectCount)
@@ -121,10 +122,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         objectID.ListCount = objects.Count - 1;
         obj.layer = default;
 
-    }
-    private void MaterialPlacement(GameObject obj, int ID)
-    {
-        obj.GetComponent<MeshRenderer>().material = MaterialSystem.Instance.Materials[ID];
     }
     private void ObjectPositionRandomPlacement(GameObject obj, GameObject objectPosTemplate, int xDistance, int zDistance)
     {

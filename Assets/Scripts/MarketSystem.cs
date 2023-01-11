@@ -45,14 +45,12 @@ public class MarketSystem : MonoSingleton<MarketSystem>
 
     public void MarketOpenButton()
     {
-        Buttons.Instance._startPanel.SetActive(false);
         _marketOpenButton.gameObject.SetActive(false);
         marketPanel.SetActive(true);
     }
 
     public void MarketCloseButton()
     {
-        Buttons.Instance._startPanel.SetActive(true);
         _marketOpenButton.gameObject.SetActive(true);
         marketPanel.SetActive(false);
     }
