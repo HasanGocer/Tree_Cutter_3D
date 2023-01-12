@@ -86,7 +86,7 @@ public class GameManager : MonoSingleton<GameManager>
         string jsonRead = System.IO.File.ReadAllText(Application.persistentDataPath + "/FactorData.json");
         ItemData.Field factor = new ItemData.Field();
         factor = JsonUtility.FromJson<ItemData.Field>(jsonRead);
-        MarketSystem.Instance.MarketStart();
+        //MarketSystem.Instance.MarketStart();
         return factor;
     }
 

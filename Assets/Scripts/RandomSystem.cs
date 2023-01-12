@@ -137,7 +137,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
             objectID.ColumnCount = tempZ;
             arrays.ObjectGrid[tempX, tempZ] = true;
             arrays.ObjectInt[tempX, tempZ] = 1;
-            obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempX * _scale, objectPosTemplate.transform.position.y, objectPosTemplate.transform.position.z + tempZ * _scale);
+            obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempX * _scale, objectPosTemplate.transform.position.y + 0.3f, objectPosTemplate.transform.position.z + tempZ * _scale);
         }
         else
             ObjectPositionRandomPlacement(obj, objectPosTemplate, xDistance, zDistance);
