@@ -35,7 +35,6 @@ public class ItemData : MonoSingleton<ItemData>
 
         GameSystem.Instance.StartCutter();
         TreeManager.Instance.StartTreeManager();
-        GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
     }
 
     public void SetMaxTreeHealth()

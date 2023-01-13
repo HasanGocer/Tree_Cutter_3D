@@ -39,7 +39,7 @@ public class GameManager : MonoSingleton<GameManager>
         if (!PlayerPrefs.HasKey("first"))
         {
             FactorPlacementWrite(ItemData.Instance.factor);
-            MarketPlacementWrite(MarketSystem.Instance.fieldBool);
+            //MarketPlacementWrite(MarketSystem.Instance.fieldBool);
             RandomSystem.Instance.NewObjectSpawn();
             PlayerPrefs.SetInt("first", 1);
         }
@@ -49,7 +49,7 @@ public class GameManager : MonoSingleton<GameManager>
             RandomSystem.Instance.StartObject();
         }
 
-        MarketSystem.Instance.fieldBool = MarketPlacementRead();
+        //MarketSystem.Instance.fieldBool = MarketPlacementRead();
         ItemData.Instance.factor = FactorPlacementRead();
         ItemData.Instance.IDAwake();
 

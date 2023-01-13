@@ -22,6 +22,19 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     [SerializeField] private int _xDÝstance, _zDÝstance;
     [SerializeField] private float _scale;
 
+    private void Start()
+    {
+        for (int i1 = 0; i1 < 5; i1++)
+        {
+            for (int i2 = 0; i2 < 5; i2++)
+            {
+                if (arrays.ObjectGrid[i1, i2])
+                    print(arrays.ObjectGrid[i1, i2]);
+            }
+        }
+        GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
+    }
+
     public void BackToThePlace(GameObject obj)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
@@ -76,7 +89,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         {
             for (int i2 = 0; i2 < 5; i2++)
             {
-                print(arrays.ObjectGrid[i1, i2]);
                 if (arrays.ObjectGrid[i1, i2])
                     objectPlacement(_OPObjectCount, arrays.ObjectInt[i1, i2], i1, i2, _objectPosTemplate, ObjectList);
             }
@@ -139,6 +151,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
             arrays.ObjectGrid[tempX, tempZ] = true;
             arrays.ObjectInt[tempX, tempZ] = 1;
             obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempZ * _scale, objectPosTemplate.transform.position.y + 1f, objectPosTemplate.transform.position.z + tempX * _scale);
+            GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
         }
         else
             ObjectPositionRandomPlacement(obj, objectPosTemplate, xDistance, zDistance);
