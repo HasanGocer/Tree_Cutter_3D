@@ -57,6 +57,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void RandomPlacementWrite(RandomSystem.Arrays Arrays)
     {
+        RandomSystem.Instance.GRRR();
         string jsonData = JsonUtility.ToJson(Arrays);
         System.IO.File.WriteAllText(Application.persistentDataPath + "/ArraysData.json", jsonData);
     }

@@ -33,8 +33,8 @@ public class GameSystem : MonoSingleton<GameSystem>
 
         for (int i1 = 0; i1 < 5; i1++)
             for (int i2 = 0; i2 < 5; i2++)
-                if (arrays.ObjectGrid[i1, i2])
-                    MoneySystem.Instance.MoneyTextRevork((int)Mathf.Pow(2, arrays.ObjectInt[i1, i2]));
+                if (arrays.randomFields[i1].ObjectGrid[i2])
+                    MoneySystem.Instance.MoneyTextRevork((int)Mathf.Pow(2, arrays.randomFields[i1].ObjectInt[i2]));
 
         MoneySystem.Instance.MoneyTextRevork((int)Mathf.Pow(2, arrays.EquipInt));
     }

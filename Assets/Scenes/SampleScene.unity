@@ -712,6 +712,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrays:
+    randomFields:
+    - ObjectGrid: 0000000000
+      ObjectInt: 0000000000000000000000000000000000000000
+    - ObjectGrid: 0000000000
+      ObjectInt: 0000000000000000000000000000000000000000
+    - ObjectGrid: 0000000000
+      ObjectInt: 0000000000000000000000000000000000000000
+    - ObjectGrid: 0000000000
+      ObjectInt: 0000000000000000000000000000000000000000
+    - ObjectGrid: 0000000000
+      ObjectInt: 0000000000000000000000000000000000000000
     EquipInt: 0
     EquipBool: 0
   ObjectList: []

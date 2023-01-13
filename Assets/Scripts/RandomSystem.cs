@@ -1,15 +1,21 @@
-using System.Collections;
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class RandomSystem : MonoSingleton<RandomSystem>
 {
     [System.Serializable]
+    public class RandomField
+    {
+        public bool[] ObjectGrid;
+        public int[] ObjectInt;
+
+    }
+
+    [System.Serializable]
     public class Arrays
     {
-        public bool[,] ObjectGrid = new bool[5, 5];
-        public int[,] ObjectInt = new int[5, 5];
+        public List<RandomField> randomFields;
         public int EquipInt;
         public bool EquipBool;
     }
@@ -22,17 +28,16 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     [SerializeField] private int _xDÝstance, _zDÝstance;
     [SerializeField] private float _scale;
 
-    private void Start()
+    public void GRRR()
     {
         for (int i1 = 0; i1 < 5; i1++)
         {
             for (int i2 = 0; i2 < 5; i2++)
             {
-                if (arrays.ObjectGrid[i1, i2])
-                    print(arrays.ObjectGrid[i1, i2]);
+                if (arrays.randomFields[i1].ObjectGrid[i2])
+                    print(arrays.randomFields[i1].ObjectGrid[i2]);
             }
         }
-        GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
     }
 
     public void BackToThePlace(GameObject obj)
@@ -67,8 +72,8 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
         ObjectList.RemoveAt(objectID.ListCount);
-        arrays.ObjectInt[objectID.lineCount, objectID.ColumnCount] = 0;
-        arrays.ObjectGrid[objectID.lineCount, objectID.ColumnCount] = false;
+        arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
+        arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
         ObjectPool.Instance.AddObject(_OPObjectCount, obj);
     }
 
@@ -82,6 +87,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     public void NewObjectSpawn()
     {
         NewObject(_OPObjectCount, _xDÝstance, _zDÝstance, _objectPosTemplate, ObjectList);
+        GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
     }
     public void StartObject()
     {
@@ -89,8 +95,8 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         {
             for (int i2 = 0; i2 < 5; i2++)
             {
-                if (arrays.ObjectGrid[i1, i2])
-                    objectPlacement(_OPObjectCount, arrays.ObjectInt[i1, i2], i1, i2, _objectPosTemplate, ObjectList);
+                if (arrays.randomFields[i1].ObjectGrid[i2])
+                    objectPlacement(_OPObjectCount, arrays.randomFields[i1].ObjectInt[i2], i1, i2, _objectPosTemplate, ObjectList);
             }
         }
         if (arrays.EquipBool)
@@ -141,15 +147,15 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         int tempX = Random.Range(0, xDistance);
         int tempZ = Random.Range(0, zDistance);
         bool isFull = false;
-        if (arrays.ObjectGrid[tempX, tempZ] == true)
+        if (arrays.randomFields[tempX].ObjectGrid[tempZ] == true)
             isFull = true;
         if (!isFull)
         {
             ObjectID objectID = obj.GetComponent<ObjectID>();
             objectID.lineCount = tempX;
             objectID.ColumnCount = tempZ;
-            arrays.ObjectGrid[tempX, tempZ] = true;
-            arrays.ObjectInt[tempX, tempZ] = 1;
+            arrays.randomFields[tempX].ObjectGrid[tempZ] = true;
+            arrays.randomFields[tempX].ObjectInt[tempZ] = 1;
             obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempZ * _scale, objectPosTemplate.transform.position.y + 1f, objectPosTemplate.transform.position.z + tempX * _scale);
             GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
         }
@@ -162,7 +168,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         objectID.lineCount = tempX;
         objectID.ColumnCount = tempZ;
         if (tempX != 6)
-            obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempZ * _scale, objectPosTemplate.transform.position.y, objectPosTemplate.transform.position.z + tempX * _scale);
+            obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempZ * _scale, objectPosTemplate.transform.position.y + 1f, objectPosTemplate.transform.position.z + tempX * _scale);
         else
             obj.transform.position = _objectEquipPosTemplate.transform.position;
     }
