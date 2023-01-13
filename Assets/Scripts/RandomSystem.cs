@@ -35,17 +35,30 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         if (objectID.lineCount != 6)
             obj.transform.position = new Vector3(_objectPosTemplate.transform.position.x + objectID.ColumnCount * _scale, _objectPosTemplate.transform.position.y + 1, _objectPosTemplate.transform.position.z + objectID.lineCount * _scale);
         else
+        {
             obj.transform.position = _objectEquipPosTemplate.transform.position;
+            obj.transform.position += new Vector3(0, 1, 0);
+        }
         GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
     }
 
     public void ObjectNewPlacement(GameObject obj, int lineCount, int columnCount)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
-        arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
-        arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
+
+        if (objectID.lineCount != 6)
+        {
+            arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
+            arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
+        }
+        else
+        {
+            arrays.EquipBool = false;
+            arrays.EquipInt = 0;
+        }
         objectID.lineCount = lineCount;
         objectID.ColumnCount = columnCount;
+
 
         if (lineCount == 6)
         {
@@ -167,13 +180,19 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         if (tempX != 6)
             obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempZ * _scale, objectPosTemplate.transform.position.y + 1f, objectPosTemplate.transform.position.z + tempX * _scale);
         else
+        {
+            GameSystem.Instance.focusObjectID = objectID;
             obj.transform.position = _objectEquipPosTemplate.transform.position;
+            obj.transform.position += new Vector3(0, 1, 0);
+        }
     }
     private void ObjectPositionEquipPlacement(GameObject obj, GameObject objectPosTemplate)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
+        GameSystem.Instance.focusObjectID = objectID;
         objectID.lineCount = 6;
         objectID.ColumnCount = 6;
         obj.transform.position = objectPosTemplate.transform.position;
+        obj.transform.position += new Vector3(0, 1, 0);
     }
 }
