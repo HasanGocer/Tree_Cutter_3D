@@ -28,38 +28,36 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     [SerializeField] private int _xDÝstance, _zDÝstance;
     [SerializeField] private float _scale;
 
-    public void GRRR()
-    {
-        for (int i1 = 0; i1 < 5; i1++)
-        {
-            for (int i2 = 0; i2 < 5; i2++)
-            {
-                if (arrays.randomFields[i1].ObjectGrid[i2])
-                    print(arrays.randomFields[i1].ObjectGrid[i2]);
-            }
-        }
-    }
 
     public void BackToThePlace(GameObject obj)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
         if (objectID.lineCount != 6)
-            obj.transform.position = new Vector3(_objectPosTemplate.transform.position.x + objectID.lineCount * _scale, _objectPosTemplate.transform.position.y, _objectPosTemplate.transform.position.z + objectID.ColumnCount * _scale);
+            obj.transform.position = new Vector3(_objectPosTemplate.transform.position.x + objectID.ColumnCount * _scale, _objectPosTemplate.transform.position.y + 1, _objectPosTemplate.transform.position.z + objectID.lineCount * _scale);
         else
             obj.transform.position = _objectEquipPosTemplate.transform.position;
+        GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
     }
 
     public void ObjectNewPlacement(GameObject obj, int lineCount, int columnCount)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
+        arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
+        arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
         objectID.lineCount = lineCount;
         objectID.ColumnCount = columnCount;
+
         if (lineCount == 6)
         {
             RandomSystem.Instance.arrays.EquipInt = obj.GetComponent<ObjectID>().objectID;
             GameSystem.Instance.focusObjectID = objectID;
             arrays.EquipBool = true;
             arrays.EquipInt = objectID.objectID;
+        }
+        else
+        {
+            arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = true;
+            arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = objectID.objectID;
         }
     }
 
@@ -157,7 +155,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
             arrays.randomFields[tempX].ObjectGrid[tempZ] = true;
             arrays.randomFields[tempX].ObjectInt[tempZ] = 1;
             obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempZ * _scale, objectPosTemplate.transform.position.y + 1f, objectPosTemplate.transform.position.z + tempX * _scale);
-            GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
         }
         else
             ObjectPositionRandomPlacement(obj, objectPosTemplate, xDistance, zDistance);

@@ -33,8 +33,8 @@ public class TestDraw : MonoBehaviour
         yield return null;
         while (touchStartedOnPlayer)
         {
-            yield return new WaitForSeconds(Time.deltaTime / 10);
-            if (Input.touchCount > 0 && GameManager.Instance.isStart)
+            yield return new WaitForEndOfFrame();
+            if (Input.touchCount > 0)
             {
                 touch = Input.GetTouch(0);
                 switch (touch.phase)
@@ -47,8 +47,13 @@ public class TestDraw : MonoBehaviour
                             RaycastHit hit;
                             if (Physics.Raycast(Camera.main.transform.position, direction, out hit, 100f))
                             {
+                                Debug.DrawLine(Camera.main.transform.position, direction, Color.red, 1);
+                                Vector3 pos;
+                                if (hit.transform.CompareTag("Box"))
+                                    pos = new Vector3(hit.point.x, transform.position.y + 0.2f, hit.point.z);
+                                else
+                                    pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                                 touchPlane = true;
-                                Vector3 pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                                 transform.position = Vector3.Lerp(this.transform.position, pos, 10f);
                             }
                         }
@@ -57,16 +62,19 @@ public class TestDraw : MonoBehaviour
             }
             else
             {
-                if (touchPlane)
-                {
-                    endTouch();
-                }
+                print(2);
+                touchStartedOnPlayer = false;
             }
+        }
+        if (touchPlane)
+        {
+            endTouch();
         }
     }
 
     public void endTouch()
     {
+        print(1);
         touchStartedOnPlayer = false;
         touchPlane = false;
         rb.isKinematic = true;
