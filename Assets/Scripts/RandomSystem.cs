@@ -13,7 +13,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         public int EquipInt;
         public bool EquipBool;
     }
-    public Arrays arrays = new Arrays();
+    public Arrays arrays;
 
     public List<GameObject> ObjectList = new List<GameObject>();
     [SerializeField] private GameObject _objectPosTemplate;
@@ -76,6 +76,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         {
             for (int i2 = 0; i2 < 5; i2++)
             {
+                print(arrays.ObjectGrid[i1, i2]);
                 if (arrays.ObjectGrid[i1, i2])
                     objectPlacement(_OPObjectCount, arrays.ObjectInt[i1, i2], i1, i2, _objectPosTemplate, ObjectList);
             }
@@ -137,7 +138,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
             objectID.ColumnCount = tempZ;
             arrays.ObjectGrid[tempX, tempZ] = true;
             arrays.ObjectInt[tempX, tempZ] = 1;
-            obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempX * _scale, objectPosTemplate.transform.position.y + 0.3f, objectPosTemplate.transform.position.z + tempZ * _scale);
+            obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempZ * _scale, objectPosTemplate.transform.position.y + 1f, objectPosTemplate.transform.position.z + tempX * _scale);
         }
         else
             ObjectPositionRandomPlacement(obj, objectPosTemplate, xDistance, zDistance);
@@ -148,7 +149,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         objectID.lineCount = tempX;
         objectID.ColumnCount = tempZ;
         if (tempX != 6)
-            obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempX * _scale, objectPosTemplate.transform.position.y, objectPosTemplate.transform.position.z + tempZ * _scale);
+            obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempZ * _scale, objectPosTemplate.transform.position.y, objectPosTemplate.transform.position.z + tempX * _scale);
         else
             obj.transform.position = _objectEquipPosTemplate.transform.position;
     }

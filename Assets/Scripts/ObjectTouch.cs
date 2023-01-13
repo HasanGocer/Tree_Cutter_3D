@@ -8,7 +8,7 @@ public class ObjectTouch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isTouch)
+        if (!isTouch && other.CompareTag("Axe"))
         {
             other.GetComponent<ObjectTouch>().isTouch = true;
             isTouch = true;

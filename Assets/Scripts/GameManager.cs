@@ -40,11 +40,14 @@ public class GameManager : MonoSingleton<GameManager>
         {
             FactorPlacementWrite(ItemData.Instance.factor);
             MarketPlacementWrite(MarketSystem.Instance.fieldBool);
-            RandomPlacementWrite(RandomSystem.Instance.arrays);
+            RandomSystem.Instance.NewObjectSpawn();
             PlayerPrefs.SetInt("first", 1);
         }
         else
+        {
+            RandomSystem.Instance.arrays = RandomPlacementRead();
             RandomSystem.Instance.StartObject();
+        }
 
         MarketSystem.Instance.fieldBool = MarketPlacementRead();
         ItemData.Instance.factor = FactorPlacementRead();
@@ -56,8 +59,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         string jsonData = JsonUtility.ToJson(Arrays);
         System.IO.File.WriteAllText(Application.persistentDataPath + "/ArraysData.json", jsonData);
-        if (!PlayerPrefs.HasKey("first"))
-            RandomSystem.Instance.NewObjectSpawn();
     }
 
     public void FactorPlacementWrite(ItemData.Field factor)
@@ -77,7 +78,6 @@ public class GameManager : MonoSingleton<GameManager>
         string jsonRead = System.IO.File.ReadAllText(Application.persistentDataPath + "/ArraysData.json");
         RandomSystem.Arrays Arrays = new RandomSystem.Arrays();
         Arrays = JsonUtility.FromJson<RandomSystem.Arrays>(jsonRead);
-        RandomSystem.Instance.StartObject();
         return Arrays;
     }
 
