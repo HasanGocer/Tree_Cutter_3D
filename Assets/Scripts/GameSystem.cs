@@ -21,7 +21,7 @@ public class GameSystem : MonoSingleton<GameSystem>
                 }
                 CutterUpper();
                 AnimController.Instance.CallIdleAnim();
-                yield return new WaitForSeconds(1 / focusObjectID.objectID);
+                yield return new WaitForSeconds((float)(2 / (float)focusObjectID.objectID));
             }
         }
     }
@@ -39,13 +39,13 @@ public class GameSystem : MonoSingleton<GameSystem>
                     int count = (int)Mathf.Pow(2, arrays.randomFields[i1].ObjectInt[i2]);
                     cutterDamage += count;
                     MoneySystem.Instance.MoneyTextRevork(count);
-                    PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(i1, i2), count);
+                    StartCoroutine(PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(i1, i2), count));
                 }
 
         int EquipCount = (int)Mathf.Pow(2, arrays.EquipInt);
         cutterDamage += EquipCount;
         MoneySystem.Instance.MoneyTextRevork(EquipCount);
-        PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(6, 6), EquipCount);
+        StartCoroutine(PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(6, 6), EquipCount));
         CharacterBar.Instance.BarUpdate(ItemData.Instance.field.maxTreeHealth, CharacterBar.Instance.treeHealth, cutterDamage);
     }
 }

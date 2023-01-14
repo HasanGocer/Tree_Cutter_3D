@@ -89,10 +89,18 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     public void ObjectPoolAdd(GameObject obj)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
+        if (objectID.lineCount != 6)
+        {
+            arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
+            arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
+        }
+        else
+        {
+            arrays.EquipBool = false;
+            arrays.EquipInt = 0;
+        }
+        ObjectPool.Instance.AddObject(_OPObjectCount + objectID.objectID - 1, obj);
         ObjectList.Remove(obj);
-        arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
-        arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
-        ObjectPool.Instance.AddObject(_OPObjectCount, obj);
     }
     public Vector3 CallPosition(int lineCount, int columnCount)
     {
@@ -133,7 +141,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
 
     private void objectEquipPlacement(int OPObjectCount, int ID, GameObject objectPosTemplate, List<GameObject> objects)
     {
-        GameObject obj = GetObject(OPObjectCount);
+        GameObject obj = GetObject(OPObjectCount + ID - 1);
         AddList(obj, objects);
         ObjectIDPlacement(ID, obj, objects, false);
         ObjectPositionEquipPlacement(obj, objectPosTemplate);

@@ -9,6 +9,7 @@ public class TestDraw : MonoBehaviour
     bool touchPlane;
     public bool touchStartedOnPlayer;
     Touch touch;
+    float yStandart = 0;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class TestDraw : MonoBehaviour
             touchStartedOnPlayer = true;
             touchPlane = true;
             RandomSystem.Instance.ObjectShake(this.gameObject);
+            yStandart = transform.position.y;
             StartCoroutine(DrawIenum());
         }
     }
@@ -31,9 +33,6 @@ public class TestDraw : MonoBehaviour
     private IEnumerator DrawIenum()
     {
         yield return null;
-
-        float yStandart = 0;
-
         while (touchStartedOnPlayer)
         {
             yield return new WaitForEndOfFrame();
@@ -43,7 +42,7 @@ public class TestDraw : MonoBehaviour
                 switch (touch.phase)
                 {
                     case TouchPhase.Began:
-                        yStandart = transform.position.y;
+
                         break;
 
                     case TouchPhase.Moved:
@@ -56,10 +55,7 @@ public class TestDraw : MonoBehaviour
                             {
                                 Debug.DrawLine(Camera.main.transform.position, direction, Color.red, 1);
                                 Vector3 pos;
-                                if (hit.transform.CompareTag("Box"))
-                                    pos = new Vector3(hit.point.x, yStandart, hit.point.z);
-                                else
-                                    pos = new Vector3(hit.point.x, yStandart, hit.point.z);
+                                pos = new Vector3(hit.point.x, yStandart, hit.point.z);
                                 touchPlane = true;
                                 transform.position = Vector3.Lerp(this.transform.position, pos, 10f);
                             }
