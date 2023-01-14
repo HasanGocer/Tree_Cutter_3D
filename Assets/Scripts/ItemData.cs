@@ -27,10 +27,18 @@ public class ItemData : MonoSingleton<ItemData>
         field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
         fieldPrice.objectCount = fieldPrice.objectCount * factor.objectCount;
 
-        if (field.maxTreeHealth > maxFactor.maxTreeHealth)
-            field.maxTreeHealth = maxFactor.maxTreeHealth;
-        if (field.objectCount > maxFactor.objectCount)
-            field.objectCount = maxFactor.objectCount;
+        if (factor.maxTreeHealth > maxFactor.maxTreeHealth)
+        {
+            factor.maxTreeHealth = maxFactor.maxTreeHealth;
+            field.maxTreeHealth = standart.maxTreeHealth + (factor.maxTreeHealth * constant.maxTreeHealth);
+            fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth * factor.maxTreeHealth;
+        }
+        if (factor.objectCount > maxFactor.objectCount)
+        {
+            factor.objectCount = maxFactor.objectCount;
+            field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
+            fieldPrice.objectCount = fieldPrice.objectCount * factor.objectCount;
+        }
 
         CharacterBar.Instance.startBar();
         StartCoroutine(GameSystem.Instance.StartCutter());

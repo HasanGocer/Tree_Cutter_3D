@@ -30,21 +30,22 @@ public class GameSystem : MonoSingleton<GameSystem>
     {
         RandomSystem.Arrays arrays = RandomSystem.Instance.arrays;
 
+        int cutterDamage = 0;
+
         for (int i1 = 0; i1 < 5; i1++)
             for (int i2 = 0; i2 < 5; i2++)
                 if (arrays.randomFields[i1].ObjectGrid[i2])
                 {
-                    print(2);
                     int count = (int)Mathf.Pow(2, arrays.randomFields[i1].ObjectInt[i2]);
+                    cutterDamage += count;
                     MoneySystem.Instance.MoneyTextRevork(count);
                     PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(i1, i2), count);
-                    CharacterBar.Instance.BarUpdate(ItemData.Instance.field.maxTreeHealth, CharacterBar.Instance.treeHealth, count);
                 }
 
         int EquipCount = (int)Mathf.Pow(2, arrays.EquipInt);
-
+        cutterDamage += EquipCount;
         MoneySystem.Instance.MoneyTextRevork(EquipCount);
         PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(6, 6), EquipCount);
-        CharacterBar.Instance.BarUpdate(ItemData.Instance.field.maxTreeHealth, CharacterBar.Instance.treeHealth, EquipCount);
+        CharacterBar.Instance.BarUpdate(ItemData.Instance.field.maxTreeHealth, CharacterBar.Instance.treeHealth, cutterDamage);
     }
 }

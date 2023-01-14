@@ -140,11 +140,8 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     }
     private void objectPlacement(int OPObjectCount, int ID, int xDÝstance, int zDistance, GameObject objectPosTemplate, List<GameObject> objects)
     {
-        print(1);
         GameObject obj = GetObject(OPObjectCount + ID - 1);
-        print(2);
         AddList(obj, objects);
-        print(3);
         ObjectIDPlacement(ID, obj, objects, false);
         ObjectPositionPlacement(obj, objectPosTemplate, ID, xDÝstance, zDistance, false);
     }

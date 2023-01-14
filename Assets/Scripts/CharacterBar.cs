@@ -16,7 +16,7 @@ public class CharacterBar : MonoSingleton<CharacterBar>
     public void BarUpdate(int max, int count, int down)
     {
         float nowBar = count / max;
-        float afterBar = (count - down) / max;
+        float afterBar = (float)((float)count - (float)down) / (float)max;
         StartCoroutine(BarUpdateIenumurator(nowBar, afterBar));
     }
 
@@ -26,18 +26,19 @@ public class CharacterBar : MonoSingleton<CharacterBar>
         float temp = 0;
         while (true)
         {
-            temp += Time.deltaTime;
+            temp += Time.deltaTime * 100;
             bar.fillAmount = Mathf.Lerp(start, finish, temp);
             yield return new WaitForEndOfFrame();
             if (bar.fillAmount == 1)
             {
-                print(1);
                 MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth);
                 ItemData.Instance.SetMaxTreeHealth();
                 bar.fillAmount = 0;
                 treeHealth = ItemData.Instance.field.maxTreeHealth;
                 break;
             }
+            else if (bar.fillAmount == finish)
+                break;
         }
     }
 }
