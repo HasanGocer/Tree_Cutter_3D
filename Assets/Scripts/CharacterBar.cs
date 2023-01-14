@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterBar : MonoBehaviour
+public class CharacterBar : MonoSingleton<CharacterBar>
 {
     [SerializeField] private Image bar;
-    public bool isRival;
+    public int treeHealth;
+
+    public void startBar()
+    {
+        treeHealth = ItemData.Instance.field.maxTreeHealth;
+    }
 
     public void BarUpdate(int max, int count, int down)
     {
@@ -28,8 +33,8 @@ public class CharacterBar : MonoBehaviour
             {
                 MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth);
                 ItemData.Instance.SetMaxTreeHealth();
-                //text
                 bar.fillAmount = 0;
+                treeHealth = ItemData.Instance.field.maxTreeHealth;
                 break;
             }
         }

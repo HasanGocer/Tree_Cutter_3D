@@ -17,6 +17,7 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Sprite _red, _green;
     [SerializeField] private Button _settingBackButton;
     [SerializeField] private Button _soundButton, _vibrationButton;
+    [SerializeField] private Button _newObjectButton;
 
     public Text moneyText, levelText;
 
@@ -54,6 +55,7 @@ public class Buttons : MonoSingleton<Buttons>
         _settingBackButton.onClick.AddListener(SettingBackButton);
         _soundButton.onClick.AddListener(SoundButton);
         _vibrationButton.onClick.AddListener(VibrationButton);
+        _newObjectButton.onClick.AddListener(RandomSystem.Instance.NewObjectSpawn);
     }
 
     private void SettingButton()

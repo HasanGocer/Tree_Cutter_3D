@@ -32,7 +32,7 @@ public class ItemData : MonoSingleton<ItemData>
         if (field.axeCount > maxFactor.axeCount)
             field.axeCount = maxFactor.axeCount;
 
-
+        CharacterBar.Instance.startBar();
         StartCoroutine(GameSystem.Instance.StartCutter());
         TreeManager.Instance.StartTreeManager();
     }

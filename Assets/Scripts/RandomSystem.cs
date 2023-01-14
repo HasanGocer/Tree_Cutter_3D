@@ -71,6 +71,8 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         {
             arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = true;
             arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = objectID.objectID;
+            TreeManager.Instance.AllAxeClose();
+            TreeManager.Instance.Axes[objectID.objectID].SetActive(true);
         }
     }
 
@@ -86,6 +88,13 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
         arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
         ObjectPool.Instance.AddObject(_OPObjectCount, obj);
+    }
+    public Vector3 CallPosition(int lineCount, int columnCount)
+    {
+        if (lineCount != 6)
+            return new Vector3(_objectPosTemplate.transform.position.x + columnCount * _scale, _objectPosTemplate.transform.position.y + 1f, _objectPosTemplate.transform.position.z + lineCount * _scale);
+        else
+            return new Vector3(_objectEquipPosTemplate.transform.position.x, _objectEquipPosTemplate.transform.position.y + 1, _objectEquipPosTemplate.transform.position.z);
     }
 
     public void NewObjectUgrade(int ID, int xDÝstance, int zDistance)
@@ -194,5 +203,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         objectID.ColumnCount = 6;
         obj.transform.position = objectPosTemplate.transform.position;
         obj.transform.position += new Vector3(0, 1, 0);
+        TreeManager.Instance.AllAxeClose();
+        TreeManager.Instance.Axes[objectID.objectID].SetActive(true);
     }
 }
