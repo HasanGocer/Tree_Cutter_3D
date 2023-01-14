@@ -22,6 +22,7 @@ public class GameSystem : MonoSingleton<GameSystem>
                 CutterUpper();
                 AnimController.Instance.CallIdleAnim();
                 yield return new WaitForSeconds(1 / focusObjectID.objectID);
+                print(1);
             }
         }
     }

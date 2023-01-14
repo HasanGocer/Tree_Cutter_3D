@@ -9,7 +9,7 @@ public class ItemData : MonoSingleton<ItemData>
     [System.Serializable]
     public class Field
     {
-        public int maxTreeHealth, axeCount;
+        public int maxTreeHealth, objectCount;
     }
 
     public Field field;
@@ -24,13 +24,13 @@ public class ItemData : MonoSingleton<ItemData>
     {
         field.maxTreeHealth = standart.maxTreeHealth + (factor.maxTreeHealth * constant.maxTreeHealth);
         fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth * factor.maxTreeHealth;
-        field.axeCount = standart.axeCount + (factor.axeCount * constant.axeCount);
-        fieldPrice.axeCount = fieldPrice.axeCount * factor.axeCount;
+        field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
+        fieldPrice.objectCount = fieldPrice.objectCount * factor.objectCount;
 
         if (field.maxTreeHealth > maxFactor.maxTreeHealth)
             field.maxTreeHealth = maxFactor.maxTreeHealth;
-        if (field.axeCount > maxFactor.axeCount)
-            field.axeCount = maxFactor.axeCount;
+        if (field.objectCount > maxFactor.objectCount)
+            field.objectCount = maxFactor.objectCount;
 
         CharacterBar.Instance.startBar();
         StartCoroutine(GameSystem.Instance.StartCutter());
@@ -50,17 +50,15 @@ public class ItemData : MonoSingleton<ItemData>
         GameManager.Instance.FactorPlacementWrite(factor);
     }
 
-    public void SetAxeCount()
+    public void SetObjectCount()
     {
-        field.axeCount++;
+        field.objectCount++;
 
-        field.axeCount = standart.axeCount + (factor.axeCount * constant.axeCount);
-        fieldPrice.axeCount = fieldPrice.axeCount * factor.axeCount;
+        field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
+        fieldPrice.objectCount = fieldPrice.objectCount * factor.objectCount;
 
-        if (field.axeCount > maxFactor.axeCount)
-            field.axeCount = maxFactor.axeCount;
-
-        TreeManager.Instance.AxeChange();
+        if (field.objectCount > maxFactor.objectCount)
+            field.objectCount = maxFactor.objectCount;
 
         GameManager.Instance.FactorPlacementWrite(factor);
     }

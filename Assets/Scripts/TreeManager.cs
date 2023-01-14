@@ -12,11 +12,6 @@ public class TreeManager : MonoSingleton<TreeManager>
         Trees[ItemData.Instance.factor.maxTreeHealth / 10].SetActive(true);
     }
 
-    public void AxeChange()
-    {
-        Axes[ItemData.Instance.factor.axeCount - 2].SetActive(false);
-        Axes[ItemData.Instance.factor.axeCount - 1].SetActive(true);
-    }
     public void AllAxeClose()
     {
         foreach (GameObject i in Axes)
