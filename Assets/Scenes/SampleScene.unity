@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.28497434, g: 0.37138918, b: 0.49656266, a: 1}
+  m_IndirectSpecularColor: {r: 0.2849749, g: 0.37138984, b: 0.49656546, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 2196076624114972711}
-  cut: {fileID: 7400000, guid: e5201dba3f86d5f44a434b1936ae1735, type: 2}
+  cut: {fileID: -203655887218126122, guid: 5f1143331c3da6b489e05e8f15bb45ff, type: 3}
 --- !u!1 &564880168
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 6
   columnCount: 6
+  isFull: 0
 --- !u!1 &730225250
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,16 +1360,47 @@ MonoBehaviour:
     randomFields:
     - ObjectGrid: 0000000000
       ObjectInt: 0000000000000000000000000000000000000000
+      objectGO:
+      - {fileID: 1240074077932272442}
+      - {fileID: 1240074077957675385}
+      - {fileID: 1240074078416024845}
+      - {fileID: 1240074076986907428}
+      - {fileID: 1240074078526080633}
     - ObjectGrid: 0000000000
       ObjectInt: 0000000000000000000000000000000000000000
+      objectGO:
+      - {fileID: 1240074077376558127}
+      - {fileID: 1240074077666245717}
+      - {fileID: 1240074076897901731}
+      - {fileID: 1240074078087456832}
+      - {fileID: 1240074077809803770}
     - ObjectGrid: 0000000000
       ObjectInt: 0000000000000000000000000000000000000000
+      objectGO:
+      - {fileID: 1240074076932163760}
+      - {fileID: 1240074078860408933}
+      - {fileID: 1240074078989603990}
+      - {fileID: 1240074078508383152}
+      - {fileID: 1240074077581882030}
     - ObjectGrid: 0000000000
       ObjectInt: 0000000000000000000000000000000000000000
+      objectGO:
+      - {fileID: 1240074077454469572}
+      - {fileID: 1240074078097766506}
+      - {fileID: 1240074077726740792}
+      - {fileID: 1240074077269638494}
+      - {fileID: 1240074078152995600}
     - ObjectGrid: 0000000000
       ObjectInt: 0000000000000000000000000000000000000000
+      objectGO:
+      - {fileID: 1240074077895443177}
+      - {fileID: 1240074078781878702}
+      - {fileID: 1240074078221907789}
+      - {fileID: 1240074077458508984}
+      - {fileID: 1240074078653166269}
     EquipInt: 0
     EquipBool: 0
+    EquipObjectGO: {fileID: 703116901}
   ObjectList: []
   _objectPosTemplate: {fileID: 1240074077490207419}
   _objectEquipPosTemplate: {fileID: 703116901}
@@ -2822,6 +2854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 1
   columnCount: 2
+  isFull: 0
 --- !u!1 &1240074076932163760
 GameObject:
   m_ObjectHideFlags: 0
@@ -2932,6 +2965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 2
   columnCount: 0
+  isFull: 0
 --- !u!1 &1240074076986907428
 GameObject:
   m_ObjectHideFlags: 0
@@ -3042,6 +3076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 0
   columnCount: 3
+  isFull: 0
 --- !u!1 &1240074077041592074
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,6 +3406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 3
   columnCount: 3
+  isFull: 0
 --- !u!1 &1240074077273072049
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,6 +3676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 1
   columnCount: 0
+  isFull: 0
 --- !u!1 &1240074077413720361
 GameObject:
   m_ObjectHideFlags: 0
@@ -3780,6 +3817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 3
   columnCount: 0
+  isFull: 0
 --- !u!1 &1240074077458508984
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,6 +3928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 4
   columnCount: 3
+  isFull: 0
 --- !u!1 &1240074077490207419
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,6 +4186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 2
   columnCount: 4
+  isFull: 0
 --- !u!1 &1240074077605205945
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,6 +4368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 1
   columnCount: 1
+  isFull: 0
 --- !u!1 &1240074077696347597
 GameObject:
   m_ObjectHideFlags: 0
@@ -4468,6 +4509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 3
   columnCount: 2
+  isFull: 0
 --- !u!1 &1240074077809803770
 GameObject:
   m_ObjectHideFlags: 0
@@ -4578,6 +4620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 1
   columnCount: 4
+  isFull: 0
 --- !u!1 &1240074077895443177
 GameObject:
   m_ObjectHideFlags: 0
@@ -4688,6 +4731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 4
   columnCount: 0
+  isFull: 0
 --- !u!1 &1240074077932272442
 GameObject:
   m_ObjectHideFlags: 0
@@ -4798,6 +4842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 0
   columnCount: 0
+  isFull: 0
 --- !u!1 &1240074077935695044
 GameObject:
   m_ObjectHideFlags: 0
@@ -5089,6 +5134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 0
   columnCount: 1
+  isFull: 0
 --- !u!1 &1240074078087456832
 GameObject:
   m_ObjectHideFlags: 0
@@ -5199,6 +5245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 1
   columnCount: 3
+  isFull: 0
 --- !u!1 &1240074078097766506
 GameObject:
   m_ObjectHideFlags: 0
@@ -5309,6 +5356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 3
   columnCount: 1
+  isFull: 0
 --- !u!1 &1240074078152995600
 GameObject:
   m_ObjectHideFlags: 0
@@ -5419,6 +5467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 3
   columnCount: 4
+  isFull: 0
 --- !u!23 &1240074078221907120
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5529,6 +5578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 4
   columnCount: 2
+  isFull: 0
 --- !u!1 &1240074078274566897
 GameObject:
   m_ObjectHideFlags: 0
@@ -5624,6 +5674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 0
   columnCount: 2
+  isFull: 0
 --- !u!23 &1240074078416024944
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5876,6 +5927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 2
   columnCount: 3
+  isFull: 0
 --- !u!1 &1240074078526080633
 GameObject:
   m_ObjectHideFlags: 0
@@ -5986,6 +6038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 0
   columnCount: 4
+  isFull: 0
 --- !u!1 &1240074078617255859
 GameObject:
   m_ObjectHideFlags: 0
@@ -6144,6 +6197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 4
   columnCount: 4
+  isFull: 0
 --- !u!65 &1240074078781878672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6254,6 +6308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 4
   columnCount: 1
+  isFull: 0
 --- !u!1 &1240074078860408933
 GameObject:
   m_ObjectHideFlags: 0
@@ -6364,6 +6419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 2
   columnCount: 1
+  isFull: 0
 --- !u!1 &1240074078989603990
 GameObject:
   m_ObjectHideFlags: 0
@@ -6474,6 +6530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineCount: 2
   columnCount: 2
+  isFull: 0
 --- !u!1 &1582813066977917040
 GameObject:
   m_ObjectHideFlags: 0

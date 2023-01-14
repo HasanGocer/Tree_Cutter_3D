@@ -22,7 +22,6 @@ public class GameSystem : MonoSingleton<GameSystem>
                 CutterUpper();
                 AnimController.Instance.CallIdleAnim();
                 yield return new WaitForSeconds(1 / focusObjectID.objectID);
-                print(1);
             }
         }
     }
@@ -35,6 +34,7 @@ public class GameSystem : MonoSingleton<GameSystem>
             for (int i2 = 0; i2 < 5; i2++)
                 if (arrays.randomFields[i1].ObjectGrid[i2])
                 {
+                    print(2);
                     int count = (int)Mathf.Pow(2, arrays.randomFields[i1].ObjectInt[i2]);
                     MoneySystem.Instance.MoneyTextRevork(count);
                     PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(i1, i2), count);

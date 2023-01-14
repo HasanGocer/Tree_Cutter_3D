@@ -5,9 +5,11 @@ using UnityEngine;
 public class GridID : MonoBehaviour
 {
     public int lineCount, columnCount;
+    public bool isFull;
 
     private void OnTriggerEnter(Collider other)
     {
-        RandomSystem.Instance.ObjectNewPlacement(other.gameObject, lineCount, columnCount);
+        if (!isFull)
+            RandomSystem.Instance.ObjectNewPlacement(other.gameObject, lineCount, columnCount);
     }
 }

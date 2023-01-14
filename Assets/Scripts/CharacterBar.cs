@@ -29,8 +29,9 @@ public class CharacterBar : MonoSingleton<CharacterBar>
             temp += Time.deltaTime;
             bar.fillAmount = Mathf.Lerp(start, finish, temp);
             yield return new WaitForEndOfFrame();
-            if (bar.fillAmount == finish)
+            if (bar.fillAmount == 1)
             {
+                print(1);
                 MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth);
                 ItemData.Instance.SetMaxTreeHealth();
                 bar.fillAmount = 0;

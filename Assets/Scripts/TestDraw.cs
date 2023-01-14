@@ -50,9 +50,9 @@ public class TestDraw : MonoBehaviour
                                 Debug.DrawLine(Camera.main.transform.position, direction, Color.red, 1);
                                 Vector3 pos;
                                 if (hit.transform.CompareTag("Box"))
-                                    pos = new Vector3(hit.point.x, transform.position.y + 0.5f, hit.point.z);
+                                    pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                                 else
-                                    pos = new Vector3(hit.point.x, transform.position.y + 0.5f, hit.point.z);
+                                    pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                                 touchPlane = true;
                                 transform.position = Vector3.Lerp(this.transform.position, pos, 10f);
                             }

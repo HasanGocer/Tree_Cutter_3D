@@ -5,18 +5,23 @@ using UnityEngine;
 public class ObjectTouch : MonoBehaviour
 {
     public bool isTouch;
+    [SerializeField] private ObjectID objectID;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!isTouch && other.CompareTag("Axe"))
         {
-            other.GetComponent<ObjectTouch>().isTouch = true;
-            isTouch = true;
-            ObjectID objectID = other.GetComponent<ObjectID>();
+            if (other.GetComponent<ObjectID>().objectID == objectID.objectID)
+            {
+                other.GetComponent<ObjectTouch>().isTouch = true;
+                isTouch = true;
+                ObjectID objectID = other.GetComponent<ObjectID>();
 
-            RandomSystem.Instance.ObjectPoolAdd(other.gameObject);
-            RandomSystem.Instance.ObjectPoolAdd(this.gameObject);
-            RandomSystem.Instance.NewObjectUgrade(objectID.objectID, objectID.lineCount, objectID.ColumnCount);
+                RandomSystem.Instance.ObjectPoolAdd(other.gameObject);
+                RandomSystem.Instance.ObjectPoolAdd(this.gameObject);
+                RandomSystem.Instance.NewObjectUgrade(objectID.objectID, objectID.lineCount, objectID.ColumnCount);
+                GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
+            }
         }
     }
 }
