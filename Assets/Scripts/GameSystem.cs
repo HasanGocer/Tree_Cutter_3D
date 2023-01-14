@@ -9,6 +9,7 @@ public class GameSystem : MonoSingleton<GameSystem>
 
     public IEnumerator StartCutter()
     {
+        AnimController.Instance.CallIdleAnim();
         while (true)
         {
             yield return null;
@@ -20,13 +21,12 @@ public class GameSystem : MonoSingleton<GameSystem>
                     focusObjectID = null;
                 }
                 CutterUpper();
-                AnimController.Instance.CallIdleAnim();
                 yield return new WaitForSeconds((float)(2 / (float)focusObjectID.objectID));
             }
         }
     }
 
-    private void CutterUpper()
+    public void CutterUpper()
     {
         RandomSystem.Arrays arrays = RandomSystem.Instance.arrays;
 
@@ -42,10 +42,14 @@ public class GameSystem : MonoSingleton<GameSystem>
                     StartCoroutine(PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(i1, i2), count));
                 }
 
-        int EquipCount = (int)Mathf.Pow(2, arrays.EquipInt);
-        cutterDamage += EquipCount;
-        MoneySystem.Instance.MoneyTextRevork(EquipCount);
-        StartCoroutine(PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(6, 6), EquipCount));
+        if (RandomSystem.Instance.arrays.EquipBool)
+        {
+            int EquipCount = (int)Mathf.Pow(2, arrays.EquipInt);
+            cutterDamage += EquipCount;
+            MoneySystem.Instance.MoneyTextRevork(EquipCount);
+            StartCoroutine(PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(6, 6), EquipCount));
+        }
+
         CharacterBar.Instance.BarUpdate(ItemData.Instance.field.maxTreeHealth, CharacterBar.Instance.treeHealth, cutterDamage);
     }
 }

@@ -43,30 +43,39 @@ public class ItemData : MonoSingleton<ItemData>
         CharacterBar.Instance.startBar();
         StartCoroutine(GameSystem.Instance.StartCutter());
         TreeManager.Instance.StartTreeManager();
+        TapMechanic.Instance.StartButton();
     }
 
     public void SetMaxTreeHealth()
     {
-        field.maxTreeHealth++;
+        factor.maxTreeHealth++;
 
         field.maxTreeHealth = standart.maxTreeHealth + (factor.maxTreeHealth * constant.maxTreeHealth);
         fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth * factor.maxTreeHealth;
 
-        if (field.maxTreeHealth > maxFactor.maxTreeHealth)
-            field.maxTreeHealth = maxFactor.maxTreeHealth;
+        if (factor.maxTreeHealth > maxFactor.maxTreeHealth)
+        {
+            factor.maxTreeHealth = maxFactor.maxTreeHealth;
+            field.maxTreeHealth = standart.maxTreeHealth + (factor.maxTreeHealth * constant.maxTreeHealth);
+            fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth * factor.maxTreeHealth;
+        }
 
         GameManager.Instance.FactorPlacementWrite(factor);
     }
 
     public void SetObjectCount()
     {
-        field.objectCount++;
+        factor.objectCount++;
 
         field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
         fieldPrice.objectCount = fieldPrice.objectCount * factor.objectCount;
 
-        if (field.objectCount > maxFactor.objectCount)
-            field.objectCount = maxFactor.objectCount;
+        if (factor.objectCount > maxFactor.objectCount)
+        {
+            factor.objectCount = maxFactor.objectCount;
+            field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
+            fieldPrice.objectCount = fieldPrice.objectCount * factor.objectCount;
+        }
 
         GameManager.Instance.FactorPlacementWrite(factor);
     }

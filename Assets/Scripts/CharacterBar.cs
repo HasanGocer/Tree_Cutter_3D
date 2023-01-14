@@ -17,6 +17,7 @@ public class CharacterBar : MonoSingleton<CharacterBar>
     {
         float nowBar = count / max;
         float afterBar = (float)((float)count - (float)down) / (float)max;
+        treeHealth -= down;
         StartCoroutine(BarUpdateIenumurator(nowBar, afterBar));
     }
 
@@ -29,7 +30,7 @@ public class CharacterBar : MonoSingleton<CharacterBar>
             temp += Time.deltaTime * 100;
             bar.fillAmount = Mathf.Lerp(start, finish, temp);
             yield return new WaitForEndOfFrame();
-            if (bar.fillAmount == 1)
+            if (bar.fillAmount == 0)
             {
                 MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth);
                 ItemData.Instance.SetMaxTreeHealth();
@@ -38,7 +39,9 @@ public class CharacterBar : MonoSingleton<CharacterBar>
                 break;
             }
             else if (bar.fillAmount == finish)
+            {
                 break;
+            }
         }
     }
 }

@@ -13,22 +13,14 @@ public class ObjectTouch : MonoBehaviour
         {
             if (other.GetComponent<ObjectID>().objectID == objectID.objectID)
             {
-                print(1);
                 other.GetComponent<ObjectTouch>().isTouch = true;
-                print(2);
                 isTouch = true;
-                print(2);
                 ObjectID objectID = other.GetComponent<ObjectID>();
-                print(3);
 
                 RandomSystem.Instance.ObjectPoolAdd(other.gameObject);
-                print(4);
                 RandomSystem.Instance.ObjectPoolAdd(this.gameObject);
-                print(5);
                 RandomSystem.Instance.NewObjectUgrade(objectID.objectID, objectID.lineCount, objectID.ColumnCount);
-                print(6);
                 GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
-                print(7);
             }
         }
     }
