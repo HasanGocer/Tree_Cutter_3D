@@ -26,6 +26,7 @@ public class TestDraw : MonoBehaviour
             touchPlane = true;
             RandomSystem.Instance.ObjectShake(this.gameObject);
             yStandart = transform.position.y;
+            Shake();
             StartCoroutine(DrawIenum());
         }
     }
@@ -80,6 +81,11 @@ public class TestDraw : MonoBehaviour
         touchPlane = false;
         rb.isKinematic = true;
         RandomSystem.Instance.BackToThePlace(this.gameObject);
+    }
+
+    private void Shake()
+    {
+        transform.DOShakeScale(1, 0.3f);
     }
 
     /*private void Update()
