@@ -9,11 +9,14 @@ public class TapMechanic : MonoSingleton<TapMechanic>
 
     public void StartButton()
     {
-        tapButton.onClick.AddListener(TapMechanicButton);
+        tapButton.onClick.AddListener(() => StartCoroutine(TapMechanicButton()));
     }
 
-    public void TapMechanicButton()
+    public IEnumerator TapMechanicButton()
     {
+        Time.timeScale = 2f;
         GameSystem.Instance.CutterUpper();
+        yield return new WaitForSecondsRealtime(1);
+        Time.timeScale = 1f;
     }
 }

@@ -22,7 +22,7 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private TMP_Text _newObjectText, _addedExtraMoneyText;
 
     public GameObject globalPanel;
-    public Text moneyText, levelText;
+    public TMP_Text moneyText, levelText;
 
     private void Start()
     {

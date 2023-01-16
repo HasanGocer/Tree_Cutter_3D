@@ -30,7 +30,7 @@ public class MoneySystem : MonoSingleton<MoneySystem>
         }
         else
         {
-            Buttons.Instance.moneyText.text = GameManager.Instance.money.ToString();
+            Buttons.Instance.moneyText.text = ((int)GameManager.Instance.money).ToString();
         }
         GameManager.Instance.SetMoney();
     }

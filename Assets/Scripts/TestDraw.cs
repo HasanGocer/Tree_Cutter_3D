@@ -10,6 +10,7 @@ public class TestDraw : MonoBehaviour
     public bool touchStartedOnPlayer;
     Touch touch;
     float yStandart = 0;
+    float TempScale = 0;
 
     void Start()
     {
@@ -26,8 +27,8 @@ public class TestDraw : MonoBehaviour
             touchPlane = true;
             RandomSystem.Instance.ObjectShake(this.gameObject);
             yStandart = transform.position.y;
-            transform.localScale = new Vector3((transform.localScale.x / 2) * 3, (transform.localScale.y / 2) * 3, (transform.localScale.z / 2) * 3);
-            Shake();
+            TempScale = transform.localScale.x;
+            StartCoroutine(Shake());
             StartCoroutine(DrawIenum());
         }
     }
@@ -82,13 +83,16 @@ public class TestDraw : MonoBehaviour
         touchStartedOnPlayer = false;
         touchPlane = false;
         rb.isKinematic = true;
-        transform.localScale = new Vector3((transform.localScale.x / 3) * 2, (transform.localScale.y / 3) * 2, (transform.localScale.z / 3) * 2);
+        transform.localScale = new Vector3(TempScale, TempScale, TempScale);
         RandomSystem.Instance.BackToThePlace(this.gameObject);
     }
 
-    private void Shake()
+    private IEnumerator Shake()
     {
-        transform.DOShakeScale(1, 0.3f);
+        transform.DOShakeScale(0.3f, 0.3f);
+        yield return new WaitForSeconds(0.4f);
+        float tempScale = (TempScale / 2) * 3;
+        transform.localScale = new Vector3(tempScale, tempScale, tempScale);
     }
 
     /*private void Update()
