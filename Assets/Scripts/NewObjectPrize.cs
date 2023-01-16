@@ -6,12 +6,11 @@ using UnityEngine.UI;
 public class NewObjectPrize : MonoSingleton<NewObjectPrize>
 {
     [SerializeField] private GameObject _newObjectPanel;
-    [SerializeField] private Button backButton, prizeButton;
+    [SerializeField] private Button prizeButton;
     [SerializeField] private bool isClose;
 
     public void StartNewObject()
     {
-        backButton.onClick.AddListener(BackButton);
         prizeButton.onClick.AddListener(PrizeButton);
         StartCoroutine(StartNewObjectIenum());
     }
@@ -29,17 +28,11 @@ public class NewObjectPrize : MonoSingleton<NewObjectPrize>
             isFull = true;
         if (!isFull)
         {
-            RandomSystem.Instance.NewObjectUgrade(1, tempX, tempZ);
+            RandomSystem.Instance.NewObjectUgrade(3, tempX, tempZ);
         }
         else
             PrizeButton();
 
-    }
-    private void BackButton()
-    {
-        isClose = false;
-        Buttons.Instance.globalPanel.SetActive(true);
-        _newObjectPanel.SetActive(false);
     }
     private IEnumerator StartNewObjectIenum()
     {
@@ -48,7 +41,7 @@ public class NewObjectPrize : MonoSingleton<NewObjectPrize>
             yield return null;
             if (!isClose)
             {
-                yield return new WaitForSeconds(40);
+                yield return new WaitForSeconds(60);
                 _newObjectPanel.SetActive(true);
                 isClose = true;
                 Buttons.Instance.globalPanel.SetActive(false);

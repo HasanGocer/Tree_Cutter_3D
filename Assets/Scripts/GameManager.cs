@@ -6,8 +6,7 @@ public class GameManager : MonoSingleton<GameManager>
 {
     //managerde bulunacak
 
-    public int money;
-    public int addedMoney;
+    public float money;
     public int vibration;
     public int sound;
 
@@ -19,9 +18,9 @@ public class GameManager : MonoSingleton<GameManager>
     private void PlayerPrefsPlacement()
     {
         if (PlayerPrefs.HasKey("money"))
-            money = PlayerPrefs.GetInt("money");
+            money = PlayerPrefs.GetFloat("money");
         else
-            PlayerPrefs.SetInt("money", 100);
+            PlayerPrefs.SetFloat("money", 100);
         MoneySystem.Instance.MoneyTextRevork(0);
 
         if (PlayerPrefs.HasKey("vibration"))
@@ -98,7 +97,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SetMoney()
     {
-        PlayerPrefs.SetInt("money", money);
+        PlayerPrefs.SetFloat("money", money);
     }
 
     public void SetSound()

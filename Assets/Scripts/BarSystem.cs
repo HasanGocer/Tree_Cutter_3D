@@ -16,7 +16,7 @@ public class BarSystem : MonoSingleton<BarSystem>
     {
         isFinish = false;
         BarFactorPlacement(amount);
-        MoneySystem.Instance.MoneyTextRevork(GameManager.Instance.addedMoney * barMoneyFactor);
+        MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth * barMoneyFactor);
     }
 
     public IEnumerator BarImageFillAmountIenum()

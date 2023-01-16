@@ -9,7 +9,7 @@ public class TreeManager : MonoSingleton<TreeManager>
 
     public void StartTreeManager()
     {
-        print(ItemData.Instance.factor.maxTreeHealth / 10);
+        AnimController.Instance.focusTree = TreeManager.Instance.Trees[ItemData.Instance.factor.maxTreeHealth / 10];
         Trees[ItemData.Instance.factor.maxTreeHealth / 10].SetActive(true);
     }
 

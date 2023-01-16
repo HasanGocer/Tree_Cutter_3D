@@ -32,6 +32,6 @@ public class ObjectTouch : MonoBehaviour
 
     private void Shake(GameObject obj)
     {
-        obj.transform.DOShakeScale(1, 0.3f);
+        obj.transform.DOShakeScale(1, 0.6f);
     }
 }

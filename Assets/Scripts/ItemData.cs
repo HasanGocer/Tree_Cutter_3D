@@ -10,6 +10,7 @@ public class ItemData : MonoSingleton<ItemData>
     public class Field
     {
         public int maxTreeHealth, objectCount;
+        public float addedExtraMoney;
     }
 
     public Field field;
@@ -26,6 +27,8 @@ public class ItemData : MonoSingleton<ItemData>
         fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth * factor.maxTreeHealth;
         field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
         fieldPrice.objectCount = fieldPrice.objectCount * factor.objectCount;
+        field.addedExtraMoney = standart.addedExtraMoney + (factor.addedExtraMoney * constant.addedExtraMoney);
+        fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney * factor.addedExtraMoney;
 
         if (factor.maxTreeHealth > maxFactor.maxTreeHealth)
         {
@@ -39,16 +42,39 @@ public class ItemData : MonoSingleton<ItemData>
             field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
             fieldPrice.objectCount = fieldPrice.objectCount * factor.objectCount;
         }
+        if (factor.addedExtraMoney > maxFactor.addedExtraMoney)
+        {
+            factor.addedExtraMoney = maxFactor.addedExtraMoney;
+            field.addedExtraMoney = standart.addedExtraMoney + (factor.addedExtraMoney * constant.addedExtraMoney);
+            fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney * factor.addedExtraMoney;
+        }
 
         NewObjectPrize.Instance.StartNewObject();
         CharacterBar.Instance.startBar();
-        StartCoroutine(GameSystem.Instance.StartCutter());
         TreeManager.Instance.StartTreeManager();
+        StartCoroutine(GameSystem.Instance.StartCutter());
         TapMechanic.Instance.StartButton();
     }
 
+    public void SetAddedExtraMoney()
+    {
+        factor.addedExtraMoney++;
+
+        field.addedExtraMoney = standart.addedExtraMoney + (factor.addedExtraMoney * constant.addedExtraMoney);
+        fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney + factor.addedExtraMoney;
+
+        if (factor.addedExtraMoney > maxFactor.addedExtraMoney)
+        {
+            factor.addedExtraMoney = maxFactor.addedExtraMoney;
+            field.addedExtraMoney = standart.addedExtraMoney + (factor.addedExtraMoney * constant.addedExtraMoney);
+            fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney + factor.addedExtraMoney;
+        }
+
+        GameManager.Instance.FactorPlacementWrite(factor);
+    }
     public void SetMaxTreeHealth()
     {
+        TreeManager.Instance.Trees[ItemData.Instance.factor.maxTreeHealth / 10].SetActive(false);
         factor.maxTreeHealth++;
 
         field.maxTreeHealth = standart.maxTreeHealth + (factor.maxTreeHealth * constant.maxTreeHealth);
@@ -61,9 +87,11 @@ public class ItemData : MonoSingleton<ItemData>
             fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth + factor.maxTreeHealth;
         }
 
+        AnimController.Instance.focusTree = TreeManager.Instance.Trees[ItemData.Instance.factor.maxTreeHealth / 10];
+        TreeManager.Instance.Trees[ItemData.Instance.factor.maxTreeHealth / 10].SetActive(true);
+
         GameManager.Instance.FactorPlacementWrite(factor);
     }
-
     public void SetObjectCount()
     {
         factor.objectCount++;

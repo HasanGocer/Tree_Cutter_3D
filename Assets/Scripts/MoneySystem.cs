@@ -12,19 +12,19 @@ public class MoneySystem : MonoSingleton<MoneySystem>
 
         if (GameManager.Instance.money >= _billion)
         {
-            int money = GameManager.Instance.money / 100;
+            int money = (int)GameManager.Instance.money / 100000000;
             float Floatmoney = (float)money / 10;
             Buttons.Instance.moneyText.text = Floatmoney.ToString() + " B";
         }
         else if (GameManager.Instance.money >= _million)
         {
-            int money = GameManager.Instance.money / 100;
+            int money = (int)GameManager.Instance.money / 100000;
             float Floatmoney = (float)money / 10;
             Buttons.Instance.moneyText.text = Floatmoney.ToString() + " M";
         }
         else if (GameManager.Instance.money >= _thousand)
         {
-            int money = GameManager.Instance.money / 100;
+            int money = (int)GameManager.Instance.money / 100;
             float Floatmoney = (float)money / 10;
             Buttons.Instance.moneyText.text = Floatmoney.ToString() + " K";
         }
@@ -41,13 +41,13 @@ public class MoneySystem : MonoSingleton<MoneySystem>
 
         if (number >= _billion)
         {
-            int money = number / 100;
+            int money = number / 100000000;
             float Floatmoney = (float)money / 10;
             numberString = Floatmoney.ToString() + " B";
         }
         else if (number >= _million)
         {
-            int money = number / 100;
+            int money = number / 100000;
             float Floatmoney = (float)money / 10;
             numberString = Floatmoney.ToString() + " M";
         }
