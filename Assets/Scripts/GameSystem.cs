@@ -21,7 +21,7 @@ public class GameSystem : MonoSingleton<GameSystem>
                     focusObjectID = null;
                 }
                 CutterUpper();
-                yield return new WaitForSeconds((float)(2 / (float)focusObjectID.objectID));
+                yield return new WaitForSeconds((float)(4 / (float)focusObjectID.objectID));
             }
         }
     }

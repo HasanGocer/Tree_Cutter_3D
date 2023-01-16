@@ -14,7 +14,6 @@ public class TapMechanic : MonoSingleton<TapMechanic>
 
     public void TapMechanicButton()
     {
-        print(1);
         GameSystem.Instance.CutterUpper();
     }
 }

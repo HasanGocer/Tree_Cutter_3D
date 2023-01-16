@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Buttons : MonoSingleton<Buttons>
 {
@@ -18,13 +19,16 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Button _settingBackButton;
     [SerializeField] private Button _soundButton, _vibrationButton;
     [SerializeField] private Button _newObjectButton;
+    [SerializeField] private TMP_Text _newObjectText;
 
+    public GameObject globalPanel;
     public Text moneyText, levelText;
 
     private void Start()
     {
         ButtonPlacement();
         SettingPlacement();
+        TextPalacement();
     }
 
     private void SettingPlacement()
@@ -55,9 +59,24 @@ public class Buttons : MonoSingleton<Buttons>
         _settingBackButton.onClick.AddListener(SettingBackButton);
         _soundButton.onClick.AddListener(SoundButton);
         _vibrationButton.onClick.AddListener(VibrationButton);
-        _newObjectButton.onClick.AddListener(RandomSystem.Instance.NewObjectSpawn);
+        _newObjectButton.onClick.AddListener(NewObjectButton);
+    }
+    private void TextPalacement()
+    {
+        _newObjectText.text = MoneySystem.Instance.NumberTextRevork(ItemData.Instance.fieldPrice.objectCount);
     }
 
+    private void NewObjectButton()
+    {
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.objectCount)
+        {
+
+            ItemData.Instance.SetObjectCount();
+            MoneySystem.Instance.MoneyTextRevork(-1 * ItemData.Instance.fieldPrice.objectCount);
+            _newObjectText.text = MoneySystem.Instance.NumberTextRevork(ItemData.Instance.fieldPrice.objectCount);
+            RandomSystem.Instance.NewObjectSpawn();
+        }
+    }
     private void SettingButton()
     {
         _settingGame.SetActive(true);

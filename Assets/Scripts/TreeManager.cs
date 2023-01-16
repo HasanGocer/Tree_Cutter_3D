@@ -9,6 +9,7 @@ public class TreeManager : MonoSingleton<TreeManager>
 
     public void StartTreeManager()
     {
+        print(ItemData.Instance.factor.maxTreeHealth / 10);
         Trees[ItemData.Instance.factor.maxTreeHealth / 10].SetActive(true);
     }
 

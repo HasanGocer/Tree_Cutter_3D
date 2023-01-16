@@ -17,6 +17,8 @@ public class ObjectTouch : MonoBehaviour
                 other.GetComponent<ObjectTouch>().isTouch = true;
                 isTouch = true;
                 ObjectID objectID = other.GetComponent<ObjectID>();
+
+                Vibration.Vibrate(30);
                 Shake(other.gameObject);
                 Shake(this.gameObject);
 

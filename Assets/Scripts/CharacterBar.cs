@@ -34,7 +34,7 @@ public class CharacterBar : MonoSingleton<CharacterBar>
             {
                 MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth);
                 ItemData.Instance.SetMaxTreeHealth();
-                bar.fillAmount = 0;
+                bar.fillAmount = 1;
                 treeHealth = ItemData.Instance.field.maxTreeHealth;
                 break;
             }
