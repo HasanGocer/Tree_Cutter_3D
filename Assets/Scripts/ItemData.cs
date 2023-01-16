@@ -49,6 +49,7 @@ public class ItemData : MonoSingleton<ItemData>
             fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney * factor.addedExtraMoney;
         }
 
+        BarSystem.Instance.barSystemStart();
         NewObjectPrize.Instance.StartNewObject();
         CharacterBar.Instance.startBar();
         TreeManager.Instance.StartTreeManager();

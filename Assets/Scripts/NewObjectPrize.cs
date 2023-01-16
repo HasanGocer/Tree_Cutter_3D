@@ -42,6 +42,7 @@ public class NewObjectPrize : MonoSingleton<NewObjectPrize>
             if (!isClose)
             {
                 yield return new WaitForSeconds(60);
+                StartCoroutine(ParticalSystem.Instance.AroundPartical());
                 _newObjectPanel.SetActive(true);
                 isClose = true;
                 Buttons.Instance.globalPanel.SetActive(false);

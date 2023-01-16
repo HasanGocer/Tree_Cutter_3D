@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class BarSystem : MonoSingleton<BarSystem>
 {
+    public GameObject barPanel;
+    [SerializeField] private Button winButton, winPrizeButton;
     [SerializeField] private Image _bar;
     public bool isFinish = true;
     [SerializeField] private bool _goRight = true;
@@ -12,15 +14,34 @@ public class BarSystem : MonoSingleton<BarSystem>
     [SerializeField] private GameObject startPos, finishPos;
     float amount = 0;
 
-    public void BarStopButton()
+    public void barSystemStart()
+    {
+        winButton.onClick.AddListener(() =>
+        {
+            MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth);
+            BarStopButton(0);
+        });
+        winPrizeButton.onClick.AddListener(() => BarStopButton(ItemData.Instance.field.maxTreeHealth));
+    }
+
+    public IEnumerator NoThanxButtonSeen()
+    {
+        yield return new WaitForSeconds(3);
+        winButton.gameObject.SetActive(true);
+    }
+
+    public void BarStopButton(int count)
     {
         isFinish = false;
         BarFactorPlacement(amount);
-        MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth * barMoneyFactor);
+        MoneySystem.Instance.MoneyTextRevork(count * barMoneyFactor);
+        barPanel.SetActive(false);
+        winButton.gameObject.SetActive(false);
     }
 
     public IEnumerator BarImageFillAmountIenum()
     {
+        isFinish = true;
         while (isFinish)
         {
             if (_goRight)

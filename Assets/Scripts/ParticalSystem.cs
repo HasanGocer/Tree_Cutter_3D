@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ParticalSystem : MonoSingleton<ParticalSystem>
 {
-    [SerializeField] private int _OPTreeHitParticalCount, _OPMergeParticalCount, _OPChangeAxeParticalCount, _OPAxeParticalCount;
-    [SerializeField] private float _treeHitTime, _mergeTime, _changeAxeTime, _axeTime;
-    [SerializeField] private GameObject _treeHitPos, _changeAxePos;
+    [SerializeField] private int _OPTreeHitParticalCount, _OPMergeParticalCount, _OPChangeAxeParticalCount, _OPAxeParticalCount, _OPAroundCount;
+    [SerializeField] private float _treeHitTime, _mergeTime, _changeAxeTime, _axeTime, _aroundTime;
+    [SerializeField] private GameObject _treeHitPos, _changeAxePos, _aroundLeftPos, _aroundRightPos;
 
     public IEnumerator CallTreeHitPartical()
     {
@@ -35,5 +35,16 @@ public class ParticalSystem : MonoSingleton<ParticalSystem>
         obj.transform.position = axePos.transform.position;
         yield return new WaitForSeconds(_axeTime);
         ObjectPool.Instance.AddObject(_OPAxeParticalCount, obj);
+    }
+    public IEnumerator AroundPartical()
+    {
+        GameObject objLeft = ObjectPool.Instance.GetPooledObject(_OPAroundCount);
+        GameObject obtRight = ObjectPool.Instance.GetPooledObject(_OPAroundCount);
+        objLeft.transform.position = _aroundLeftPos.transform.position;
+        obtRight.transform.position = _aroundLeftPos.transform.position;
+        yield return new WaitForSeconds(_aroundTime);
+        ObjectPool.Instance.AddObject(_OPAroundCount, objLeft);
+        ObjectPool.Instance.AddObject(_OPAroundCount, obtRight);
+
     }
 }

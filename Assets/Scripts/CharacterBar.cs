@@ -36,6 +36,10 @@ public class CharacterBar : MonoSingleton<CharacterBar>
                 ItemData.Instance.SetMaxTreeHealth();
                 bar.fillAmount = 1;
                 treeHealth = ItemData.Instance.field.maxTreeHealth;
+                BarSystem.Instance.barPanel.SetActive(true);
+                StartCoroutine(ParticalSystem.Instance.AroundPartical());
+                StartCoroutine(BarSystem.Instance.NoThanxButtonSeen());
+                StartCoroutine(BarSystem.Instance.BarImageFillAmountIenum());
                 break;
             }
             else if (bar.fillAmount == finish)
