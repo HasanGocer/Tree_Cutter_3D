@@ -26,7 +26,7 @@ public class TestDraw : MonoBehaviour
             touchPlane = true;
             RandomSystem.Instance.ObjectShake(this.gameObject);
             yStandart = transform.position.y;
-            transform.localScale = new Vector3(transform.localScale.x * 1.5f, transform.localScale.y * 1.5f, transform.localScale.y * 1.5f);
+            transform.localScale = new Vector3((transform.localScale.x / 2) * 3, (transform.localScale.y / 2) * 3, (transform.localScale.z / 2) * 3);
             Shake();
             StartCoroutine(DrawIenum());
         }
@@ -35,6 +35,7 @@ public class TestDraw : MonoBehaviour
     private IEnumerator DrawIenum()
     {
         yield return null;
+        print(1);
         while (touchStartedOnPlayer)
         {
             yield return new WaitForEndOfFrame();
@@ -43,21 +44,19 @@ public class TestDraw : MonoBehaviour
                 touch = Input.GetTouch(0);
                 switch (touch.phase)
                 {
-                    case TouchPhase.Began:
-
-                        break;
-
                     case TouchPhase.Moved:
                         if (touchStartedOnPlayer)
                         {
                             Vector3 worldFromMousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 100));
                             Vector3 direction = worldFromMousePos - Camera.main.transform.position;
                             RaycastHit hit;
+
                             if (Physics.Raycast(Camera.main.transform.position, direction, out hit, 100f))
                             {
                                 Debug.DrawLine(Camera.main.transform.position, direction, Color.red, 1);
                                 Vector3 pos;
                                 pos = new Vector3(hit.point.x, yStandart, hit.point.z);
+                                print(pos.y);
                                 touchPlane = true;
                                 transform.position = Vector3.Lerp(this.transform.position, pos, 10f);
                             }
@@ -67,11 +66,13 @@ public class TestDraw : MonoBehaviour
             }
             else
             {
+                print(2);
                 touchStartedOnPlayer = false;
             }
         }
         if (touchPlane)
         {
+            print(3);
             endTouch();
         }
     }
@@ -81,8 +82,8 @@ public class TestDraw : MonoBehaviour
         touchStartedOnPlayer = false;
         touchPlane = false;
         rb.isKinematic = true;
-        RandomSystem.Instance.BackToThePlace(this.gameObject);
         transform.localScale = new Vector3((transform.localScale.x / 3) * 2, (transform.localScale.y / 3) * 2, (transform.localScale.z / 3) * 2);
+        RandomSystem.Instance.BackToThePlace(this.gameObject);
     }
 
     private void Shake()
