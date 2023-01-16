@@ -36,7 +36,6 @@ public class TestDraw : MonoBehaviour
     private IEnumerator DrawIenum()
     {
         yield return null;
-        print(1);
         while (touchStartedOnPlayer)
         {
             yield return new WaitForEndOfFrame();
@@ -67,13 +66,11 @@ public class TestDraw : MonoBehaviour
             }
             else
             {
-                print(2);
                 touchStartedOnPlayer = false;
             }
         }
         if (touchPlane)
         {
-            print(3);
             endTouch();
         }
     }

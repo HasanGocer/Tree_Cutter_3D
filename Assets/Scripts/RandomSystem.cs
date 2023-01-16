@@ -32,7 +32,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
 
     public void BackToThePlace(GameObject obj)
     {
-        print(5);
         ObjectID objectID = obj.GetComponent<ObjectID>();
         if (objectID.lineCount != 6)
             obj.transform.position = new Vector3(_objectPosTemplate.transform.position.x + objectID.ColumnCount * _scale, _objectPosTemplate.transform.position.y + 1, _objectPosTemplate.transform.position.z + objectID.lineCount * _scale);
@@ -79,7 +78,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
             arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = true;
             arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = objectID.objectID;
             TreeManager.Instance.AllAxeClose();
-            TreeManager.Instance.Axes[objectID.objectID].SetActive(true);
+            TreeManager.Instance.Axes[objectID.objectID - 1].SetActive(true);
         }
     }
 

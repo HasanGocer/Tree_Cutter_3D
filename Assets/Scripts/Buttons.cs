@@ -84,20 +84,33 @@ public class Buttons : MonoSingleton<Buttons>
         {
             MoneySystem.Instance.MoneyTextRevork(-1 * ItemData.Instance.fieldPrice.addedExtraMoney);
             ItemData.Instance.SetAddedExtraMoney();
+            StartExtraMoneyPartical();
             _addedExtraMoneyText.text = MoneySystem.Instance.NumberTextRevork((int)ItemData.Instance.fieldPrice.addedExtraMoney);
         }
+    }
+    private void StartExtraMoneyPartical()
+    {
+        for (int i1 = 0; i1 < 5; i1++)
+            for (int i2 = 0; i2 < 5; i2++)
+                if (RandomSystem.Instance.arrays.randomFields[i1].ObjectGrid[i2])
+                    StartCoroutine(ParticalSystem.Instance.AxeGridMoneyPartical(RandomSystem.Instance.arrays.randomFields[i1].objectGO[i2]));
+
+        if (RandomSystem.Instance.arrays.EquipBool)
+            StartCoroutine(ParticalSystem.Instance.AxeGridMoneyPartical(RandomSystem.Instance.arrays.EquipObjectGO));
     }
     private void SettingButton()
     {
         _settingGame.SetActive(true);
         _settingButton.gameObject.SetActive(false);
         _money.SetActive(false);
+        Time.timeScale = 0;
     }
     private void SettingBackButton()
     {
         _settingGame.SetActive(false);
         _settingButton.gameObject.SetActive(true);
         _money.SetActive(true);
+        Time.timeScale = 1;
     }
     private void SoundButton()
     {

@@ -20,6 +20,7 @@ public class NewObjectPrize : MonoSingleton<NewObjectPrize>
         isClose = false;
         Buttons.Instance.globalPanel.SetActive(true);
         _newObjectPanel.SetActive(false);
+        Time.timeScale = 1;
 
         int tempX = Random.Range(0, Random.Range(0, 5));
         int tempZ = Random.Range(0, Random.Range(0, 5));
@@ -42,6 +43,7 @@ public class NewObjectPrize : MonoSingleton<NewObjectPrize>
             if (!isClose)
             {
                 yield return new WaitForSeconds(60);
+                Time.timeScale = 0;
                 StartCoroutine(ParticalSystem.Instance.AroundPartical());
                 _newObjectPanel.SetActive(true);
                 isClose = true;

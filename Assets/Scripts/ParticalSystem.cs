@@ -33,6 +33,7 @@ public class ParticalSystem : MonoSingleton<ParticalSystem>
     {
         GameObject obj = ObjectPool.Instance.GetPooledObject(_OPAxeParticalCount);
         obj.transform.position = axePos.transform.position;
+        obj.transform.position += new Vector3(0, 1, 0);
         yield return new WaitForSeconds(_axeTime);
         ObjectPool.Instance.AddObject(_OPAxeParticalCount, obj);
     }
@@ -45,6 +46,13 @@ public class ParticalSystem : MonoSingleton<ParticalSystem>
         yield return new WaitForSeconds(_aroundTime);
         ObjectPool.Instance.AddObject(_OPAroundCount, objLeft);
         ObjectPool.Instance.AddObject(_OPAroundCount, obtRight);
-
+    }
+    public IEnumerator AxeGridMoneyPartical(GameObject axePos)
+    {
+        GameObject obj = ObjectPool.Instance.GetPooledObject(_OPAroundCount);
+        obj.transform.position = axePos.transform.position;
+        obj.transform.position += new Vector3(0, 1, 0);
+        yield return new WaitForSeconds(_aroundTime);
+        ObjectPool.Instance.AddObject(_OPAroundCount, obj);
     }
 }

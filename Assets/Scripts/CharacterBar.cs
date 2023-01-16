@@ -34,12 +34,13 @@ public class CharacterBar : MonoSingleton<CharacterBar>
             {
                 ItemData.Instance.SetMaxTreeHealth();
                 bar.fillAmount = 1;
-                treeHealth = ItemData.Instance.field.maxTreeHealth;
+                treeHealth = ItemData.Instance.field.maxTreeHealth / 4;
                 BarSystem.Instance.barPanel.SetActive(true);
                 BarSystem.Instance.finishMoney.text = MoneySystem.Instance.NumberTextRevork(ItemData.Instance.field.maxTreeHealth);
                 StartCoroutine(BarSystem.Instance.NoThanxButtonSeen());
                 StartCoroutine(BarSystem.Instance.BarImageFillAmountIenum());
                 StartCoroutine(ParticalSystem.Instance.AroundPartical());
+                Time.timeScale = 0;
                 break;
             }
             else if (bar.fillAmount == finish)

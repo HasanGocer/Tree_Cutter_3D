@@ -20,10 +20,10 @@ public class BarSystem : MonoSingleton<BarSystem>
     {
         winButton.onClick.AddListener(() =>
         {
-            MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth);
+            MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth / 4);
             BarStopButton(0);
         });
-        winPrizeButton.onClick.AddListener(() => BarStopButton(ItemData.Instance.field.maxTreeHealth));
+        winPrizeButton.onClick.AddListener(() => BarStopButton(ItemData.Instance.field.maxTreeHealth / 4));
     }
 
     public IEnumerator NoThanxButtonSeen()
@@ -39,6 +39,7 @@ public class BarSystem : MonoSingleton<BarSystem>
         MoneySystem.Instance.MoneyTextRevork(count * barMoneyFactor);
         barPanel.SetActive(false);
         winButton.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public IEnumerator BarImageFillAmountIenum()
