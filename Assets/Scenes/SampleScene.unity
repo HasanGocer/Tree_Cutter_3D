@@ -2611,6 +2611,8 @@ MonoBehaviour:
     poolSize: 26
   - objectPrefab: {fileID: 1919543859444104, guid: 0796b331004a84744a609063dc845137, type: 3}
     poolSize: 26
+  - objectPrefab: {fileID: 1919543859444104, guid: 0796b331004a84744a609063dc845137, type: 3}
+    poolSize: 26
   - objectPrefab: {fileID: 510377638944696047, guid: 93152aadac256134980c387887142a6f, type: 3}
     poolSize: 26
   - objectPrefab: {fileID: 2450040756943895756, guid: fbc3c978f728a36458303c4d1edcf1d5, type: 3}
@@ -2720,11 +2722,13 @@ MonoBehaviour:
   _OPTreeHitParticalCount: 1
   _OPMergeParticalCount: 2
   _OPChangeAxeParticalCount: 3
-  treeHitTime: 1
-  mergeTime: 1
-  changeAxeTime: 1
-  treeHitPos: {fileID: 1734963926}
-  changeAxePos: {fileID: 2196076624114972734}
+  _OPAxeParticalCount: 0
+  _treeHitTime: 0
+  _mergeTime: 0
+  _changeAxeTime: 0
+  _axeTime: 0
+  _treeHitPos: {fileID: 0}
+  _changeAxePos: {fileID: 0}
 --- !u!1 &1670605418
 GameObject:
   m_ObjectHideFlags: 0

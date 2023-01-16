@@ -41,6 +41,7 @@ public class GameSystem : MonoSingleton<GameSystem>
                     cutterDamage += ItemData.Instance.field.addedExtraMoney;
                     MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.addedExtraMoney + count);
                     StartCoroutine(PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(i1, i2), ItemData.Instance.field.addedExtraMoney + count));
+                    StartCoroutine(ParticalSystem.Instance.AxeMoneyPartical(arrays.randomFields[i1].objectGO[i2]));
                 }
 
         if (RandomSystem.Instance.arrays.EquipBool)
@@ -50,6 +51,7 @@ public class GameSystem : MonoSingleton<GameSystem>
             cutterDamage += ItemData.Instance.field.addedExtraMoney;
             MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.addedExtraMoney + EquipCount);
             StartCoroutine(PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(6, 6), ItemData.Instance.field.addedExtraMoney + EquipCount));
+            StartCoroutine(ParticalSystem.Instance.AxeMoneyPartical(arrays.EquipObjectGO));
         }
 
         CharacterBar.Instance.BarUpdate(ItemData.Instance.field.maxTreeHealth, CharacterBar.Instance.treeHealth, (int)cutterDamage);

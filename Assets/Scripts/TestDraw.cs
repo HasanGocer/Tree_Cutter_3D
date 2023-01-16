@@ -26,6 +26,7 @@ public class TestDraw : MonoBehaviour
             touchPlane = true;
             RandomSystem.Instance.ObjectShake(this.gameObject);
             yStandart = transform.position.y;
+            transform.localScale = new Vector3(transform.localScale.x * 1.5f, transform.localScale.y * 1.5f, transform.localScale.y * 1.5f);
             Shake();
             StartCoroutine(DrawIenum());
         }
@@ -81,6 +82,7 @@ public class TestDraw : MonoBehaviour
         touchPlane = false;
         rb.isKinematic = true;
         RandomSystem.Instance.BackToThePlace(this.gameObject);
+        transform.localScale = new Vector3((transform.localScale.x / 3) * 2, (transform.localScale.y / 3) * 2, (transform.localScale.z / 3) * 2);
     }
 
     private void Shake()
