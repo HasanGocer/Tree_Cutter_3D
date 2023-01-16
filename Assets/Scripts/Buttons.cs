@@ -18,8 +18,8 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private Sprite _red, _green;
     [SerializeField] private Button _settingBackButton;
     [SerializeField] private Button _soundButton, _vibrationButton;
-    [SerializeField] private Button _newObjectButton;
-    [SerializeField] private TMP_Text _newObjectText;
+    [SerializeField] private Button _newObjectButton, _addedExtraMoneyButton;
+    [SerializeField] private TMP_Text _newObjectText, _addedExtraMoneyText;
 
     public GameObject globalPanel;
     public Text moneyText, levelText;
@@ -60,10 +60,12 @@ public class Buttons : MonoSingleton<Buttons>
         _soundButton.onClick.AddListener(SoundButton);
         _vibrationButton.onClick.AddListener(VibrationButton);
         _newObjectButton.onClick.AddListener(NewObjectButton);
+        _addedExtraMoneyButton.onClick.AddListener(AddedExtraMoneyButton);
     }
     private void TextPalacement()
     {
         _newObjectText.text = MoneySystem.Instance.NumberTextRevork(ItemData.Instance.fieldPrice.objectCount);
+        _addedExtraMoneyText.text = MoneySystem.Instance.NumberTextRevork((int)ItemData.Instance.fieldPrice.addedExtraMoney);
     }
 
     private void NewObjectButton()
@@ -75,6 +77,16 @@ public class Buttons : MonoSingleton<Buttons>
             MoneySystem.Instance.MoneyTextRevork(-1 * ItemData.Instance.fieldPrice.objectCount);
             _newObjectText.text = MoneySystem.Instance.NumberTextRevork(ItemData.Instance.fieldPrice.objectCount);
             RandomSystem.Instance.NewObjectSpawn();
+        }
+    }
+    private void AddedExtraMoneyButton()
+    {
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.objectCount)
+        {
+
+            ItemData.Instance.SetAddedExtraMoney();
+            MoneySystem.Instance.MoneyTextRevork(-1 * ItemData.Instance.fieldPrice.addedExtraMoney);
+            _addedExtraMoneyText.text = MoneySystem.Instance.NumberTextRevork((int)ItemData.Instance.fieldPrice.addedExtraMoney);
         }
     }
     private void SettingButton()

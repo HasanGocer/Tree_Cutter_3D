@@ -21,6 +21,7 @@ public class AnimController : MonoSingleton<AnimController>
         while (true)
         {
             yield return new WaitForSeconds(0.7f);
+            StartCoroutine(ParticalSystem.Instance.CallTreeHitPartical());
             Shake(focusTree);
             yield return new WaitForSeconds(1.8f);
         }

@@ -145,6 +145,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         AddList(obj, objects);
         ObjectIDPlacement(ID, obj, objects, false);
         ObjectPositionEquipPlacement(obj, objectPosTemplate);
+        StartCoroutine(ParticalSystem.Instance.ChangeAxePartical());
     }
     private void objectPlacement(int OPObjectCount, int ID, int xDÝstance, int zDistance, GameObject objectPosTemplate, List<GameObject> objects)
     {
@@ -180,7 +181,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
 
         objectID.ListCount = objects.Count - 1;
         obj.layer = default;
-
     }
     private void ObjectPositionRandomPlacement(GameObject obj, GameObject objectPosTemplate, int xDistance, int zDistance)
     {
@@ -238,6 +238,6 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         obj.transform.position = objectPosTemplate.transform.position;
         obj.transform.position += new Vector3(0, 1, 0);
         TreeManager.Instance.AllAxeClose();
-        TreeManager.Instance.Axes[objectID.objectID].SetActive(true);
+        TreeManager.Instance.Axes[objectID.objectID - 1].SetActive(true);
     }
 }

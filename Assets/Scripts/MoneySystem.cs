@@ -6,7 +6,7 @@ public class MoneySystem : MonoSingleton<MoneySystem>
 {
     [SerializeField] private int _billion = 1000000000, _million = 1000000, _thousand = 1000;
 
-    public void MoneyTextRevork(int plus)
+    public void MoneyTextRevork(float plus)
     {
         GameManager.Instance.money += plus;
 

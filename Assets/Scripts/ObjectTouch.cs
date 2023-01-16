@@ -19,6 +19,7 @@ public class ObjectTouch : MonoBehaviour
                 ObjectID objectID = other.GetComponent<ObjectID>();
 
                 Vibration.Vibrate(30);
+                StartCoroutine(ParticalSystem.Instance.CallMergePartical(this.gameObject));
                 Shake(other.gameObject);
                 Shake(this.gameObject);
 
