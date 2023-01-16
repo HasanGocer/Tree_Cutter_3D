@@ -50,7 +50,7 @@ public class ItemData : MonoSingleton<ItemData>
         }
 
         BarSystem.Instance.barSystemStart();
-        NewObjectPrize.Instance.StartNewObject();
+        //NewObjectPrize.Instance.StartNewObject();
         CharacterBar.Instance.startBar();
         TreeManager.Instance.StartTreeManager();
         StartCoroutine(GameSystem.Instance.StartCutter());
@@ -75,7 +75,7 @@ public class ItemData : MonoSingleton<ItemData>
     }
     public void SetMaxTreeHealth()
     {
-        TreeManager.Instance.Trees[ItemData.Instance.factor.maxTreeHealth / 10].SetActive(false);
+        TreeManager.Instance.Trees[factor.maxTreeHealth % TreeManager.Instance.Trees.Count].SetActive(false);
         factor.maxTreeHealth++;
 
         field.maxTreeHealth = standart.maxTreeHealth + (factor.maxTreeHealth * constant.maxTreeHealth);
@@ -88,8 +88,8 @@ public class ItemData : MonoSingleton<ItemData>
             fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth + factor.maxTreeHealth;
         }
 
-        AnimController.Instance.focusTree = TreeManager.Instance.Trees[ItemData.Instance.factor.maxTreeHealth / 10];
-        TreeManager.Instance.Trees[ItemData.Instance.factor.maxTreeHealth / 10].SetActive(true);
+        AnimController.Instance.focusTree = TreeManager.Instance.Trees[factor.maxTreeHealth % TreeManager.Instance.Trees.Count];
+        TreeManager.Instance.Trees[factor.maxTreeHealth % TreeManager.Instance.Trees.Count].SetActive(true);
 
         GameManager.Instance.FactorPlacementWrite(factor);
     }

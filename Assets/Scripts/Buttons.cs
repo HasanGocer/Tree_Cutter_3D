@@ -72,9 +72,8 @@ public class Buttons : MonoSingleton<Buttons>
     {
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.objectCount)
         {
-
-            ItemData.Instance.SetObjectCount();
             MoneySystem.Instance.MoneyTextRevork(-1 * ItemData.Instance.fieldPrice.objectCount);
+            ItemData.Instance.SetObjectCount();
             _newObjectText.text = MoneySystem.Instance.NumberTextRevork(ItemData.Instance.fieldPrice.objectCount);
             RandomSystem.Instance.NewObjectSpawn();
         }
@@ -83,9 +82,8 @@ public class Buttons : MonoSingleton<Buttons>
     {
         if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.objectCount)
         {
-
-            ItemData.Instance.SetAddedExtraMoney();
             MoneySystem.Instance.MoneyTextRevork(-1 * ItemData.Instance.fieldPrice.addedExtraMoney);
+            ItemData.Instance.SetAddedExtraMoney();
             _addedExtraMoneyText.text = MoneySystem.Instance.NumberTextRevork((int)ItemData.Instance.fieldPrice.addedExtraMoney);
         }
     }

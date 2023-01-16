@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BarSystem : MonoSingleton<BarSystem>
 {
     public GameObject barPanel;
     [SerializeField] private Button winButton, winPrizeButton;
+    public TMP_Text finishMoney;
     [SerializeField] private Image _bar;
     public bool isFinish = true;
     [SerializeField] private bool _goRight = true;

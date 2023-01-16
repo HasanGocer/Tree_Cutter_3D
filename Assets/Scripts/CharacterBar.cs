@@ -32,14 +32,14 @@ public class CharacterBar : MonoSingleton<CharacterBar>
             yield return new WaitForEndOfFrame();
             if (bar.fillAmount == 0)
             {
-                MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.maxTreeHealth);
                 ItemData.Instance.SetMaxTreeHealth();
                 bar.fillAmount = 1;
                 treeHealth = ItemData.Instance.field.maxTreeHealth;
                 BarSystem.Instance.barPanel.SetActive(true);
-                StartCoroutine(ParticalSystem.Instance.AroundPartical());
+                BarSystem.Instance.finishMoney.text = MoneySystem.Instance.NumberTextRevork(ItemData.Instance.field.maxTreeHealth);
                 StartCoroutine(BarSystem.Instance.NoThanxButtonSeen());
                 StartCoroutine(BarSystem.Instance.BarImageFillAmountIenum());
+                StartCoroutine(ParticalSystem.Instance.AroundPartical());
                 break;
             }
             else if (bar.fillAmount == finish)

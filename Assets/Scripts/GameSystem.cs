@@ -9,7 +9,6 @@ public class GameSystem : MonoSingleton<GameSystem>
 
     public IEnumerator StartCutter()
     {
-        AnimController.Instance.CallIdleAnim();
         while (true)
         {
             yield return null;
@@ -20,6 +19,7 @@ public class GameSystem : MonoSingleton<GameSystem>
                     RandomSystem.Instance.arrays.EquipBool = false;
                     focusObjectID = null;
                 }
+                AnimController.Instance.CallIdleAnim();
                 CutterUpper();
                 yield return new WaitForSeconds((float)(4 / (float)focusObjectID.objectID));
             }
