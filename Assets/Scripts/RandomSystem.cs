@@ -133,7 +133,11 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
         if (objectID.scale != 0)
+        {
             obj.transform.localScale = new Vector3(objectID.scale, objectID.scale, objectID.scale);
+            obj.GetComponent<TestDraw>().touchStartedOnPlayer = false;
+            obj.GetComponent<ObjectTouch>().isTouch = false;
+        }
     }
     private GameObject GetObject(int OPObjectCount)
     {
