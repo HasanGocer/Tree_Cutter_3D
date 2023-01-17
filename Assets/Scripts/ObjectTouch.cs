@@ -12,7 +12,7 @@ public class ObjectTouch : MonoBehaviour
     {
         if (!isTouch && other.CompareTag("Axe"))
         {
-            if (other.GetComponent<ObjectID>().objectID == objectID.objectID)
+            if (other.GetComponent<ObjectID>().objectID == objectID.objectID && objectID.objectID != TreeManager.Instance.Axes.Count - 1)
             {
                 other.GetComponent<ObjectTouch>().isTouch = true;
                 isTouch = true;
