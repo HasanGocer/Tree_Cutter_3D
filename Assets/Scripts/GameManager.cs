@@ -20,8 +20,8 @@ public class GameManager : MonoSingleton<GameManager>
         if (PlayerPrefs.HasKey("money"))
             money = PlayerPrefs.GetFloat("money");
         else
-            PlayerPrefs.SetFloat("money", 100);
-        MoneySystem.Instance.MoneyTextRevork(0);
+            PlayerPrefs.SetFloat("money", 0);
+        MoneySystem.Instance.MoneyTextRevork(20);
 
         if (PlayerPrefs.HasKey("vibration"))
             vibration = PlayerPrefs.GetInt("vibration");

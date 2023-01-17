@@ -62,13 +62,15 @@ public class ItemData : MonoSingleton<ItemData>
         factor.addedExtraMoney++;
 
         field.addedExtraMoney = standart.addedExtraMoney + (factor.addedExtraMoney * constant.addedExtraMoney);
-        fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney + factor.addedExtraMoney;
+        fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney / (factor.addedExtraMoney - 1);
+        fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney * factor.addedExtraMoney;
 
         if (factor.addedExtraMoney > maxFactor.addedExtraMoney)
         {
             factor.addedExtraMoney = maxFactor.addedExtraMoney;
             field.addedExtraMoney = standart.addedExtraMoney + (factor.addedExtraMoney * constant.addedExtraMoney);
-            fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney + factor.addedExtraMoney;
+            fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney / (factor.addedExtraMoney - 1);
+            fieldPrice.addedExtraMoney = fieldPrice.addedExtraMoney * factor.addedExtraMoney;
         }
 
         GameManager.Instance.FactorPlacementWrite(factor);
@@ -79,13 +81,15 @@ public class ItemData : MonoSingleton<ItemData>
         factor.maxTreeHealth++;
 
         field.maxTreeHealth = standart.maxTreeHealth + (factor.maxTreeHealth * constant.maxTreeHealth);
-        fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth + factor.maxTreeHealth;
+        fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth / (factor.maxTreeHealth - 1);
+        fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth * factor.maxTreeHealth;
 
         if (factor.maxTreeHealth > maxFactor.maxTreeHealth)
         {
             factor.maxTreeHealth = maxFactor.maxTreeHealth;
             field.maxTreeHealth = standart.maxTreeHealth + (factor.maxTreeHealth * constant.maxTreeHealth);
-            fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth + factor.maxTreeHealth;
+            fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth / (factor.maxTreeHealth - 1);
+            fieldPrice.maxTreeHealth = fieldPrice.maxTreeHealth * factor.maxTreeHealth;
         }
 
         AnimController.Instance.focusTree = TreeManager.Instance.Trees[factor.maxTreeHealth % TreeManager.Instance.Trees.Count];
@@ -98,13 +102,15 @@ public class ItemData : MonoSingleton<ItemData>
         factor.objectCount++;
 
         field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
-        fieldPrice.objectCount = fieldPrice.objectCount + factor.objectCount;
+        fieldPrice.objectCount = fieldPrice.objectCount / (factor.objectCount - 1);
+        fieldPrice.objectCount = fieldPrice.objectCount * factor.objectCount;
 
         if (factor.objectCount > maxFactor.objectCount)
         {
             factor.objectCount = maxFactor.objectCount;
             field.objectCount = standart.objectCount + (factor.objectCount * constant.objectCount);
-            fieldPrice.objectCount = fieldPrice.objectCount + factor.objectCount;
+            fieldPrice.objectCount = fieldPrice.objectCount / (factor.objectCount - 1);
+            fieldPrice.objectCount = fieldPrice.objectCount * factor.objectCount;
         }
 
         GameManager.Instance.FactorPlacementWrite(factor);

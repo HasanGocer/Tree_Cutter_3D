@@ -16,15 +16,15 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     public class Arrays
     {
         public List<RandomField> randomFields;
-        public int EquipInt;
-        public bool EquipBool;
-        public GameObject EquipObjectGO;
+        //public int EquipInt;
+        // public bool EquipBool;
+        //public GameObject EquipObjectGO;
     }
     public Arrays arrays;
 
     public List<GameObject> ObjectList = new List<GameObject>();
     [SerializeField] private GameObject _objectPosTemplate;
-    [SerializeField] private GameObject _objectEquipPosTemplate;
+    // [SerializeField] private GameObject _objectEquipPosTemplate;
     [SerializeField] private int _OPObjectCount;
     [SerializeField] private int _xDÝstance, _zDÝstance;
     [SerializeField] private float _scale;
@@ -33,13 +33,9 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     public void BackToThePlace(GameObject obj)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
-        if (objectID.lineCount != 6)
-            obj.transform.position = new Vector3(_objectPosTemplate.transform.position.x + objectID.ColumnCount * _scale, _objectPosTemplate.transform.position.y + 1, _objectPosTemplate.transform.position.z + objectID.lineCount * _scale);
-        else
-        {
-            obj.transform.position = _objectEquipPosTemplate.transform.position;
-            obj.transform.position += new Vector3(0, 1, 0);
-        }
+
+        obj.transform.position = new Vector3(_objectPosTemplate.transform.position.x + objectID.ColumnCount * _scale, _objectPosTemplate.transform.position.y + 1, _objectPosTemplate.transform.position.z + objectID.lineCount * _scale);
+
         GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
     }
 
@@ -47,39 +43,16 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
 
-        if (objectID.lineCount != 6)
-        {
-            arrays.randomFields[objectID.lineCount].objectGO[objectID.ColumnCount].GetComponent<GridID>().isFull = false;
-            arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
-            arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
-        }
-        else
-        {
-            TreeManager.Instance.AllAxeClose();
-            arrays.EquipObjectGO.GetComponent<GridID>().isFull = false;
-            arrays.EquipBool = false;
-            arrays.EquipInt = 0;
-        }
+        arrays.randomFields[objectID.lineCount].objectGO[objectID.ColumnCount].GetComponent<GridID>().isFull = false;
+        arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
+        arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
+
         objectID.lineCount = lineCount;
         objectID.ColumnCount = columnCount;
 
-
-        if (lineCount == 6)
-        {
-            RandomSystem.Instance.arrays.EquipInt = obj.GetComponent<ObjectID>().objectID;
-            arrays.EquipObjectGO.GetComponent<GridID>().isFull = true;
-            GameSystem.Instance.focusObjectID = objectID;
-            arrays.EquipBool = true;
-            arrays.EquipInt = objectID.objectID;
-        }
-        else
-        {
-            arrays.randomFields[objectID.lineCount].objectGO[objectID.ColumnCount].GetComponent<GridID>().isFull = true;
-            arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = true;
-            arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = objectID.objectID;
-            TreeManager.Instance.AllAxeClose();
-            TreeManager.Instance.Axes[objectID.objectID - 1].SetActive(true);
-        }
+        arrays.randomFields[objectID.lineCount].objectGO[objectID.ColumnCount].GetComponent<GridID>().isFull = true;
+        arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = true;
+        arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = objectID.objectID;
     }
 
     public void ObjectShake(GameObject obj)
@@ -90,25 +63,16 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     public void ObjectPoolAdd(GameObject obj)
     {
         ObjectID objectID = obj.GetComponent<ObjectID>();
-        if (objectID.lineCount != 6)
-        {
-            arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
-            arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
-        }
-        else
-        {
-            arrays.EquipBool = false;
-            arrays.EquipInt = 0;
-        }
+
+        arrays.randomFields[objectID.lineCount].ObjectGrid[objectID.ColumnCount] = false;
+        arrays.randomFields[objectID.lineCount].ObjectInt[objectID.ColumnCount] = 0;
+
         ObjectPool.Instance.AddObject(_OPObjectCount + objectID.objectID - 1, obj);
         ObjectList.Remove(obj);
     }
     public Vector3 CallPosition(int lineCount, int columnCount)
     {
-        if (lineCount != 6)
-            return new Vector3(_objectPosTemplate.transform.position.x + columnCount * _scale, _objectPosTemplate.transform.position.y + 1f, _objectPosTemplate.transform.position.z + lineCount * _scale);
-        else
-            return new Vector3(_objectEquipPosTemplate.transform.position.x, _objectEquipPosTemplate.transform.position.y + 1, _objectEquipPosTemplate.transform.position.z);
+        return new Vector3(_objectPosTemplate.transform.position.x + columnCount * _scale, _objectPosTemplate.transform.position.y + 1f, _objectPosTemplate.transform.position.z + lineCount * _scale);
     }
 
     public void NewObjectUgrade(int ID, int xDÝstance, int zDistance)
@@ -121,6 +85,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     public void NewObjectSpawn()
     {
         NewObject(_OPObjectCount, _xDÝstance, _zDÝstance, _objectPosTemplate, ObjectList);
+        AxeChenge();
         GameManager.Instance.RandomPlacementWrite(RandomSystem.Instance.arrays);
     }
     public void StartObject()
@@ -132,21 +97,20 @@ public class RandomSystem : MonoSingleton<RandomSystem>
                     objectPlacement(_OPObjectCount, arrays.randomFields[i1].ObjectInt[i2], i1, i2, _objectPosTemplate, ObjectList);
                     arrays.randomFields[i1].objectGO[i2].GetComponent<GridID>().isFull = true;
                 }
-
-        if (arrays.EquipBool)
-        {
-            objectEquipPlacement(_OPObjectCount, arrays.EquipInt, _objectEquipPosTemplate, ObjectList);
-            arrays.EquipObjectGO.GetComponent<GridID>().isFull = true;
-        }
+        AxeChenge();
     }
 
-    private void objectEquipPlacement(int OPObjectCount, int ID, GameObject objectPosTemplate, List<GameObject> objects)
+    private void AxeChenge()
     {
-        GameObject obj = GetObject(OPObjectCount + ID - 1);
-        AddList(obj, objects);
-        ObjectIDPlacement(ID, obj, objects, false);
-        ObjectPositionEquipPlacement(obj, objectPosTemplate);
-        StartCoroutine(ParticalSystem.Instance.ChangeAxePartical());
+        TreeManager.Instance.AllAxeClose();
+        int temp = 0;
+        for (int i1 = 0; i1 < 5; i1++)
+            for (int i2 = 0; i2 < 5; i2++)
+                if (RandomSystem.Instance.arrays.randomFields[i1].ObjectGrid[i2])
+                    if (RandomSystem.Instance.arrays.randomFields[i1].ObjectInt[i2] > temp)
+                        temp = RandomSystem.Instance.arrays.randomFields[i1].ObjectInt[i2];
+
+        TreeManager.Instance.Axes[temp - 1].SetActive(true);
     }
     private void objectPlacement(int OPObjectCount, int ID, int xDÝstance, int zDistance, GameObject objectPosTemplate, List<GameObject> objects)
     {
@@ -208,37 +172,12 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         ObjectID objectID = obj.GetComponent<ObjectID>();
         objectID.lineCount = tempX;
         objectID.ColumnCount = tempZ;
-        if (tempX != 6)
-        {
-            obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempZ * _scale, objectPosTemplate.transform.position.y + 1f, objectPosTemplate.transform.position.z + tempX * _scale);
+        obj.transform.position = new Vector3(objectPosTemplate.transform.position.x + tempZ * _scale, objectPosTemplate.transform.position.y + 1f, objectPosTemplate.transform.position.z + tempX * _scale);
 
-            if (isNewPlace)
-            {
-                arrays.randomFields[tempX].ObjectGrid[tempZ] = true;
-                arrays.randomFields[tempX].ObjectInt[tempZ] = ID;
-            }
-        }
-        else
+        if (isNewPlace)
         {
-            GameSystem.Instance.focusObjectID = objectID;
-            if (isNewPlace)
-            {
-                arrays.EquipBool = true;
-                arrays.EquipInt = ID;
-            }
-            obj.transform.position = _objectEquipPosTemplate.transform.position;
-            obj.transform.position += new Vector3(0, 1, 0);
+            arrays.randomFields[tempX].ObjectGrid[tempZ] = true;
+            arrays.randomFields[tempX].ObjectInt[tempZ] = ID;
         }
-    }
-    private void ObjectPositionEquipPlacement(GameObject obj, GameObject objectPosTemplate)
-    {
-        ObjectID objectID = obj.GetComponent<ObjectID>();
-        GameSystem.Instance.focusObjectID = objectID;
-        objectID.lineCount = 6;
-        objectID.ColumnCount = 6;
-        obj.transform.position = objectPosTemplate.transform.position;
-        obj.transform.position += new Vector3(0, 1, 0);
-        TreeManager.Instance.AllAxeClose();
-        TreeManager.Instance.Axes[objectID.objectID - 1].SetActive(true);
     }
 }

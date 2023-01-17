@@ -589,6 +589,7 @@ MonoBehaviour:
   character: {fileID: 2196076624114972711}
   cut: {fileID: -203655887218126122, guid: 5f1143331c3da6b489e05e8f15bb45ff, type: 3}
   idle: {fileID: -203655887218126122, guid: 30992bd0b05b5764a80e9742c7dd9e2e, type: 3}
+  isStay: 0
   focusTree: {fileID: 0}
 --- !u!1 &564880168
 GameObject:
@@ -967,7 +968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &703116902
 Transform:
   m_ObjectHideFlags: 0
@@ -1107,7 +1108,7 @@ MonoBehaviour:
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.01
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -2231,12 +2232,8 @@ MonoBehaviour:
       - {fileID: 1240074078221907789}
       - {fileID: 1240074077458508984}
       - {fileID: 1240074078653166269}
-    EquipInt: 0
-    EquipBool: 0
-    EquipObjectGO: {fileID: 703116901}
   ObjectList: []
   _objectPosTemplate: {fileID: 1240074077490207419}
-  _objectEquipPosTemplate: {fileID: 703116901}
   _OPObjectCount: 6
   "_xD\u0130stance": 5
   "_zD\u0130stance": 5
@@ -2253,7 +2250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb1b8f502b773e4bb4b9480fc8f24c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  focusObjectID: {fileID: 0}
 --- !u!1 &1176873766
 GameObject:
   m_ObjectHideFlags: 0
@@ -2997,11 +2993,11 @@ MonoBehaviour:
   _OPChangeAxeParticalCount: 3
   _OPAxeParticalCount: 4
   _OPAroundCount: 5
-  _treeHitTime: 0
-  _mergeTime: 0
-  _changeAxeTime: 0
-  _axeTime: 0
-  _aroundTime: 0
+  _treeHitTime: 1
+  _mergeTime: 1
+  _changeAxeTime: 1
+  _axeTime: 1
+  _aroundTime: 1
   _treeHitPos: {fileID: 1734963926}
   _changeAxePos: {fileID: 2196076624114972722}
   _aroundLeftPos: {fileID: 1959770380}
@@ -3258,7 +3254,6 @@ MonoBehaviour:
   _addedExtraMoneyText: {fileID: 1176873768}
   globalPanel: {fileID: 7092919044215866145}
   moneyText: {fileID: 1179657144}
-  levelText: {fileID: 910019939}
 --- !u!114 &1693499744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18491,7 +18486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &7092919043378754387
 Canvas:
   m_ObjectHideFlags: 0

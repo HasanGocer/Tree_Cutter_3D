@@ -22,7 +22,7 @@ public class Buttons : MonoSingleton<Buttons>
     [SerializeField] private TMP_Text _newObjectText, _addedExtraMoneyText;
 
     public GameObject globalPanel;
-    public TMP_Text moneyText, levelText;
+    public TMP_Text moneyText;
 
     private void Start()
     {
@@ -80,7 +80,7 @@ public class Buttons : MonoSingleton<Buttons>
     }
     private void AddedExtraMoneyButton()
     {
-        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.objectCount)
+        if (GameManager.Instance.money >= ItemData.Instance.fieldPrice.addedExtraMoney)
         {
             MoneySystem.Instance.MoneyTextRevork(-1 * ItemData.Instance.fieldPrice.addedExtraMoney);
             ItemData.Instance.SetAddedExtraMoney();
@@ -94,9 +94,6 @@ public class Buttons : MonoSingleton<Buttons>
             for (int i2 = 0; i2 < 5; i2++)
                 if (RandomSystem.Instance.arrays.randomFields[i1].ObjectGrid[i2])
                     StartCoroutine(ParticalSystem.Instance.AxeGridMoneyPartical(RandomSystem.Instance.arrays.randomFields[i1].objectGO[i2]));
-
-        if (RandomSystem.Instance.arrays.EquipBool)
-            StartCoroutine(ParticalSystem.Instance.AxeGridMoneyPartical(RandomSystem.Instance.arrays.EquipObjectGO));
     }
     private void SettingButton()
     {

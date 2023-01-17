@@ -4,25 +4,13 @@ using UnityEngine;
 
 public class GameSystem : MonoSingleton<GameSystem>
 {
-    public ObjectID focusObjectID;
-
-
     public IEnumerator StartCutter()
     {
         while (true)
         {
-            yield return null;
-            if (RandomSystem.Instance.arrays.EquipBool)
-            {
-                if (focusObjectID.lineCount != 6)
-                {
-                    RandomSystem.Instance.arrays.EquipBool = false;
-                    focusObjectID = null;
-                }
-                AnimController.Instance.CallIdleAnim();
-                CutterUpper();
-                yield return new WaitForSeconds((float)(4 / (float)focusObjectID.objectID));
-            }
+            AnimController.Instance.CallIdleAnim();
+            CutterUpper();
+            yield return new WaitForSeconds((float)(2));
         }
     }
 
@@ -43,16 +31,6 @@ public class GameSystem : MonoSingleton<GameSystem>
                     StartCoroutine(PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(i1, i2), ItemData.Instance.field.addedExtraMoney + count));
                     StartCoroutine(ParticalSystem.Instance.AxeMoneyPartical(arrays.randomFields[i1].objectGO[i2]));
                 }
-
-        if (RandomSystem.Instance.arrays.EquipBool)
-        {
-            int EquipCount = (int)Mathf.Pow(2, arrays.EquipInt);
-            cutterDamage += EquipCount;
-            cutterDamage += ItemData.Instance.field.addedExtraMoney;
-            MoneySystem.Instance.MoneyTextRevork(ItemData.Instance.field.addedExtraMoney + EquipCount);
-            StartCoroutine(PointText.Instance.CallPointMoneyText(RandomSystem.Instance.CallPosition(6, 6), ItemData.Instance.field.addedExtraMoney + EquipCount));
-            StartCoroutine(ParticalSystem.Instance.AxeMoneyPartical(arrays.EquipObjectGO));
-        }
 
         CharacterBar.Instance.BarUpdate(ItemData.Instance.field.maxTreeHealth, CharacterBar.Instance.treeHealth, (int)cutterDamage);
     }

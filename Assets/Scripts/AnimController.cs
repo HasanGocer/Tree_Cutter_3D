@@ -8,6 +8,7 @@ public class AnimController : MonoSingleton<AnimController>
 {
     [SerializeField] private AnimancerComponent character;
     [SerializeField] private AnimationClip cut, idle;
+    [SerializeField] private bool isStay;
     public GameObject focusTree;
 
     public void CallIdleAnim()
@@ -17,13 +18,23 @@ public class AnimController : MonoSingleton<AnimController>
 
     private IEnumerator TreeShake()
     {
+        if (!isStay)
+        {
             character.Play(cut, 0.2f);
-            yield return new WaitForSeconds(0.7f);
+            isStay = true;
+        }
+        yield return new WaitForSeconds(0.7f);
+        if (!isStay)
+        {
             StartCoroutine(ParticalSystem.Instance.CallTreeHitPartical());
             Shake(focusTree);
-            yield return new WaitForSeconds(1.6f);
-            character.Play(idle, 0.2f);
-            yield return new WaitForSeconds(0.2f);
+        }
+        yield return new WaitForSeconds(2.0f);
+        if (!isStay)
+        {
+            //character.Play(idle, 0.2f);
+            isStay = false;
+        }
     }
     private void Shake(GameObject obj)
     {
