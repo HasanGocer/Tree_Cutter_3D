@@ -6,10 +6,11 @@ public class GameSystem : MonoSingleton<GameSystem>
 {
     public IEnumerator StartCutter()
     {
+        AnimController.Instance.CallIdleAnim();
         while (true)
         {
-            AnimController.Instance.CallIdleAnim();
-            CutterUpper();
+            if (!BarSystem.Instance.isFinish)
+                CutterUpper();
             yield return new WaitForSeconds((float)(2));
         }
     }

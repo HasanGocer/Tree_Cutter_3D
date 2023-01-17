@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TapMechanic : MonoSingleton<TapMechanic>
 {
-    [SerializeField] private Button tapButton;
+    public Button tapButton;
 
     public void StartButton()
     {
@@ -14,7 +14,7 @@ public class TapMechanic : MonoSingleton<TapMechanic>
 
     public IEnumerator TapMechanicButton()
     {
-        Time.timeScale = 2f;
+        Time.timeScale = 3f;
         GameSystem.Instance.CutterUpper();
         yield return new WaitForSecondsRealtime(1);
         Time.timeScale = 1f;

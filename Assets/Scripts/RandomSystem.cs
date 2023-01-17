@@ -81,6 +81,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
         AddList(obj, ObjectList);
         ObjectIDPlacement(ID, obj, ObjectList, true);
         ObjectPositionPlacement(obj, _objectPosTemplate, ID + 1, xDÝstance, zDistance, true);
+        AxeChenge();
     }
     public void NewObjectSpawn()
     {

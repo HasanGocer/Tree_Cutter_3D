@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CharacterBar : MonoSingleton<CharacterBar>
 {
-    [SerializeField] private Image bar;
+    public Image bar;
     public int treeHealth;
 
     public void startBar()
@@ -18,6 +18,8 @@ public class CharacterBar : MonoSingleton<CharacterBar>
         float nowBar = count / max;
         float afterBar = (float)((float)count - (float)down) / (float)max;
         treeHealth -= down;
+        if (afterBar < 0)
+            afterBar = 0;
         StartCoroutine(BarUpdateIenumurator(nowBar, afterBar));
     }
 
@@ -32,15 +34,14 @@ public class CharacterBar : MonoSingleton<CharacterBar>
             yield return new WaitForEndOfFrame();
             if (bar.fillAmount == 0)
             {
+                TapMechanic.Instance.tapButton.enabled = false;
                 ItemData.Instance.SetMaxTreeHealth();
-                bar.fillAmount = 1;
-                treeHealth = ItemData.Instance.field.maxTreeHealth / 4;
+                treeHealth = ItemData.Instance.field.maxTreeHealth;
                 BarSystem.Instance.barPanel.SetActive(true);
-                BarSystem.Instance.finishMoney.text = MoneySystem.Instance.NumberTextRevork(ItemData.Instance.field.maxTreeHealth);
+                BarSystem.Instance.finishMoney.text = MoneySystem.Instance.NumberTextRevork(ItemData.Instance.field.maxTreeHealth / 4);
                 StartCoroutine(BarSystem.Instance.NoThanxButtonSeen());
                 StartCoroutine(BarSystem.Instance.BarImageFillAmountIenum());
                 StartCoroutine(ParticalSystem.Instance.AroundPartical());
-                Time.timeScale = 0;
                 break;
             }
             else if (bar.fillAmount == finish)

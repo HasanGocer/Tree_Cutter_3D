@@ -33,7 +33,7 @@ public class ParticalSystem : MonoSingleton<ParticalSystem>
     {
         GameObject obj = ObjectPool.Instance.GetPooledObject(_OPAxeParticalCount);
         obj.transform.position = axePos.transform.position;
-        obj.transform.position += new Vector3(0, 1, 0);
+        obj.transform.position += new Vector3(0, 2, 0);
         yield return new WaitForSeconds(_axeTime);
         ObjectPool.Instance.AddObject(_OPAxeParticalCount, obj);
     }
@@ -51,7 +51,7 @@ public class ParticalSystem : MonoSingleton<ParticalSystem>
     {
         GameObject obj = ObjectPool.Instance.GetPooledObject(_OPAroundCount);
         obj.transform.position = axePos.transform.position;
-        obj.transform.position += new Vector3(0, 1, 0);
+        obj.transform.position += new Vector3(0, 2, 0);
         yield return new WaitForSeconds(_aroundTime);
         ObjectPool.Instance.AddObject(_OPAroundCount, obj);
     }

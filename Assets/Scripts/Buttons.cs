@@ -95,19 +95,21 @@ public class Buttons : MonoSingleton<Buttons>
                 if (RandomSystem.Instance.arrays.randomFields[i1].ObjectGrid[i2])
                     StartCoroutine(ParticalSystem.Instance.AxeGridMoneyPartical(RandomSystem.Instance.arrays.randomFields[i1].objectGO[i2]));
     }
-    private void SettingButton()
-    {
-        _settingGame.SetActive(true);
-        _settingButton.gameObject.SetActive(false);
-        _money.SetActive(false);
-        Time.timeScale = 0;
-    }
     private void SettingBackButton()
     {
+        TapMechanic.Instance.tapButton.enabled = true;
         _settingGame.SetActive(false);
         _settingButton.gameObject.SetActive(true);
         _money.SetActive(true);
         Time.timeScale = 1;
+    }
+    private void SettingButton()
+    {
+        TapMechanic.Instance.tapButton.enabled = false;
+        _settingGame.SetActive(true);
+        _settingButton.gameObject.SetActive(false);
+        _money.SetActive(false);
+        Time.timeScale = 0;
     }
     private void SoundButton()
     {

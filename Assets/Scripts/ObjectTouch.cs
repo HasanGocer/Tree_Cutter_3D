@@ -20,6 +20,7 @@ public class ObjectTouch : MonoBehaviour
 
                 Vibration.Vibrate(30);
                 StartCoroutine(ParticalSystem.Instance.CallMergePartical(this.gameObject));
+                StartCoroutine(ParticalSystem.Instance.CallMergePartical(other.gameObject));
                 Shake(other.gameObject);
                 Shake(this.gameObject);
 

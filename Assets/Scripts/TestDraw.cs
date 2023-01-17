@@ -56,7 +56,6 @@ public class TestDraw : MonoBehaviour
                                 Debug.DrawLine(Camera.main.transform.position, direction, Color.red, 1);
                                 Vector3 pos;
                                 pos = new Vector3(hit.point.x, yStandart, hit.point.z);
-                                print(pos.y);
                                 touchPlane = true;
                                 transform.position = Vector3.Lerp(this.transform.position, pos, 10f);
                             }
