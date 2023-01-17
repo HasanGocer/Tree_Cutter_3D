@@ -5,4 +5,5 @@ using UnityEngine;
 public class ObjectID : MonoBehaviour
 {
     public int objectID, ListCount, lineCount, ColumnCount;
+    public float scale;
 }

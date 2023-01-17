@@ -10,7 +10,7 @@ public class TapMechanic : MonoSingleton<TapMechanic>
         if (Input.touchCount > 0 && !BarSystem.Instance.isFinish)
         {
             Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began && !BarSystem.Instance.isFinish)
                 StartCoroutine(TapMechanicButton());
         }
     }

@@ -124,9 +124,16 @@ public class RandomSystem : MonoSingleton<RandomSystem>
     {
         int ID = 1;
         GameObject obj = GetObject(OPObjectCount);
+        ScaleCheck(obj);
         AddList(obj, objects);
         ObjectIDPlacement(ID, obj, objects, false);
         ObjectPositionRandomPlacement(obj, objectPosTemplate, xDÝstance, zDistance);
+    }
+    private void ScaleCheck(GameObject obj)
+    {
+        ObjectID objectID = obj.GetComponent<ObjectID>();
+        if (objectID.scale != 0)
+            obj.transform.localScale = new Vector3(objectID.scale, objectID.scale, objectID.scale);
     }
     private GameObject GetObject(int OPObjectCount)
     {

@@ -28,6 +28,7 @@ public class TestDraw : MonoBehaviour
             RandomSystem.Instance.ObjectShake(this.gameObject);
             yStandart = transform.position.y;
             TempScale = transform.localScale.x;
+            GetComponent<ObjectID>().scale = TempScale;
             StartCoroutine(Shake());
             StartCoroutine(DrawIenum());
         }
