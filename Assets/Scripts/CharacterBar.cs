@@ -10,7 +10,13 @@ public class CharacterBar : MonoSingleton<CharacterBar>
 
     public void startBar()
     {
-        treeHealth = ItemData.Instance.field.maxTreeHealth;
+        if (PlayerPrefs.HasKey("treeHealth"))
+            treeHealth = PlayerPrefs.GetInt("treeHealth");
+        else
+        {
+            PlayerPrefs.SetInt("treeHealth", ItemData.Instance.field.maxTreeHealth);
+            treeHealth = ItemData.Instance.field.maxTreeHealth;
+        }
     }
 
     public void BarUpdate(int max, int count, int down)
@@ -18,6 +24,7 @@ public class CharacterBar : MonoSingleton<CharacterBar>
         float nowBar = count / max;
         float afterBar = (float)((float)count - (float)down) / (float)max;
         treeHealth -= down;
+        SetTreeHealth();
         if (afterBar < 0)
             afterBar = 0;
         StartCoroutine(BarUpdateIenumurator(nowBar, afterBar));
@@ -39,6 +46,7 @@ public class CharacterBar : MonoSingleton<CharacterBar>
                 print(1);
                 ItemData.Instance.SetMaxTreeHealth();
                 treeHealth = ItemData.Instance.field.maxTreeHealth;
+                SetTreeHealth();
                 BarSystem.Instance.barPanel.SetActive(true);
                 BarSystem.Instance.finishMoney.text = MoneySystem.Instance.NumberTextRevork(ItemData.Instance.field.maxTreeHealth / 4);
                 StartCoroutine(BarSystem.Instance.NoThanxButtonSeen());
@@ -51,5 +59,11 @@ public class CharacterBar : MonoSingleton<CharacterBar>
                 break;
             }
         }
+    }
+
+    private void SetTreeHealth()
+    {
+        PlayerPrefs.SetInt("treeHealth", treeHealth);
+
     }
 }

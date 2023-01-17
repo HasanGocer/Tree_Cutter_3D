@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5644501, g: 0.6346424, b: 0.72093076, a: 1}
+  m_IndirectSpecularColor: {r: 0.56445056, g: 0.63464326, b: 0.7209321, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2963,7 +2963,7 @@ MonoBehaviour:
     objectCount: 1
     addedExtraMoney: 1
   constant:
-    maxTreeHealth: 500
+    maxTreeHealth: 4000
     objectCount: 1
     addedExtraMoney: 0.1
   maxFactor:
