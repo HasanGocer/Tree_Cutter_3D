@@ -97,7 +97,6 @@ public class Buttons : MonoSingleton<Buttons>
     }
     private void SettingBackButton()
     {
-        TapMechanic.Instance.tapButton.enabled = true;
         _settingGame.SetActive(false);
         _settingButton.gameObject.SetActive(true);
         _money.SetActive(true);
@@ -105,7 +104,6 @@ public class Buttons : MonoSingleton<Buttons>
     }
     private void SettingButton()
     {
-        TapMechanic.Instance.tapButton.enabled = false;
         _settingGame.SetActive(true);
         _settingButton.gameObject.SetActive(false);
         _money.SetActive(false);

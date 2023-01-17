@@ -34,21 +34,12 @@ public class BarSystem : MonoSingleton<BarSystem>
 
     public void BarStopButton(int count)
     {
-        print(1);
         isFinish = false;
-        print(2);
         BarFactorPlacement(amount);
-        print(3);
         MoneySystem.Instance.MoneyTextRevork(count * barMoneyFactor);
-        print(4);
         barPanel.SetActive(false);
-        print(5);
         winButton.gameObject.SetActive(false);
-        print(6);
-        TapMechanic.Instance.tapButton.enabled = true;
-        print(7);
         CharacterBar.Instance.bar.fillAmount = 1;
-        print(8);
     }
 
     public IEnumerator BarImageFillAmountIenum()

@@ -54,7 +54,6 @@ public class ItemData : MonoSingleton<ItemData>
         CharacterBar.Instance.startBar();
         TreeManager.Instance.StartTreeManager();
         StartCoroutine(GameSystem.Instance.StartCutter());
-        TapMechanic.Instance.StartButton();
     }
 
     public void SetAddedExtraMoney()
