@@ -34,6 +34,9 @@ public class CharacterBar : MonoSingleton<CharacterBar>
             yield return new WaitForEndOfFrame();
             if (bar.fillAmount == 0)
             {
+                if (BarSystem.Instance.isFinish)
+                    break;
+                print(1);
                 ItemData.Instance.SetMaxTreeHealth();
                 treeHealth = ItemData.Instance.field.maxTreeHealth;
                 BarSystem.Instance.barPanel.SetActive(true);
