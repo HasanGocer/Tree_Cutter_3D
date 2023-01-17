@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class TapMechanic : MonoSingleton<TapMechanic>
 {
-    public Button tapButton;
-
-    public void StartButton()
+    private void Update()
     {
-        tapButton.onClick.AddListener(() => StartCoroutine(TapMechanicButton()));
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+                StartCoroutine(TapMechanicButton());
+        }
     }
 
     public IEnumerator TapMechanicButton()
