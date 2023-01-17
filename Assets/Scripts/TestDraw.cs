@@ -68,10 +68,7 @@ public class TestDraw : MonoBehaviour
                 touchStartedOnPlayer = false;
             }
         }
-        if (touchPlane)
-        {
-            endTouch();
-        }
+        endTouch();
     }
 
     public void endTouch()
@@ -88,7 +85,10 @@ public class TestDraw : MonoBehaviour
         transform.DOShakeScale(0.3f, 0.3f);
         yield return new WaitForSeconds(0.4f);
         float tempScale = (TempScale / 2) * 3;
-        transform.localScale = new Vector3(tempScale, tempScale, tempScale);
+        if (touchStartedOnPlayer)
+            transform.localScale = new Vector3(tempScale, tempScale, tempScale);
+        else
+            transform.localScale = new Vector3(TempScale, TempScale, TempScale);
     }
 
     /*private void Update()

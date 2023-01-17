@@ -24,10 +24,18 @@ public class ParticalSystem : MonoSingleton<ParticalSystem>
     }
     public IEnumerator ChangeAxePartical()
     {
-        GameObject obj = ObjectPool.Instance.GetPooledObject(_OPChangeAxeParticalCount);
-        obj.transform.position = _changeAxePos.transform.position;
+        GameObject obj1 = ObjectPool.Instance.GetPooledObject(_OPChangeAxeParticalCount);
+        GameObject obj2 = ObjectPool.Instance.GetPooledObject(_OPChangeAxeParticalCount);
+        GameObject obj3 = ObjectPool.Instance.GetPooledObject(_OPChangeAxeParticalCount);
+        obj1.transform.position = _changeAxePos.transform.position;
+        obj2.transform.position = _changeAxePos.transform.position;
+        obj3.transform.position = _changeAxePos.transform.position;
+        obj2.transform.position = new Vector3(0, 1, 1);
+        obj3.transform.position = new Vector3(0, 1, -1);
         yield return new WaitForSeconds(_changeAxeTime);
-        ObjectPool.Instance.AddObject(_OPChangeAxeParticalCount, obj);
+        ObjectPool.Instance.AddObject(_OPChangeAxeParticalCount, obj1);
+        ObjectPool.Instance.AddObject(_OPChangeAxeParticalCount, obj2);
+        ObjectPool.Instance.AddObject(_OPChangeAxeParticalCount, obj3);
     }
     public IEnumerator AxeMoneyPartical(GameObject axePos)
     {

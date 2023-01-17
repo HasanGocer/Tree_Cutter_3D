@@ -110,7 +110,7 @@ public class RandomSystem : MonoSingleton<RandomSystem>
                 if (RandomSystem.Instance.arrays.randomFields[i1].ObjectGrid[i2])
                     if (RandomSystem.Instance.arrays.randomFields[i1].ObjectInt[i2] > temp)
                         temp = RandomSystem.Instance.arrays.randomFields[i1].ObjectInt[i2];
-
+        ParticalSystem.Instance.ChangeAxePartical();
         TreeManager.Instance.Axes[temp - 1].SetActive(true);
     }
     private void objectPlacement(int OPObjectCount, int ID, int xDÝstance, int zDistance, GameObject objectPosTemplate, List<GameObject> objects)
