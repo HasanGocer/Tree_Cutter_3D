@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5644501, g: 0.6346424, b: 0.72093076, a: 1}
+  m_IndirectSpecularColor: {r: 0.56445056, g: 0.63464326, b: 0.7209321, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1300,7 +1300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 62.399597, y: 0.000062466}
+  m_AnchoredPosition: {x: 62.399597, y: 0.000061035156}
   m_SizeDelta: {x: -124.7992, y: -75.693}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &748789236
@@ -2892,9 +2892,9 @@ MonoBehaviour:
   - objectPrefab: {fileID: 1260334799937022, guid: 2b28f2fdc5a65964f96ea4d2b9d6ca63, type: 3}
     poolSize: 200
   - objectPrefab: {fileID: 1575721338728490, guid: 4171bb92c5c591848b14be1db6f3efe2, type: 3}
-    poolSize: 200
+    poolSize: 400
   - objectPrefab: {fileID: 1575721338728490, guid: 4171bb92c5c591848b14be1db6f3efe2, type: 3}
-    poolSize: 26
+    poolSize: 400
   - objectPrefab: {fileID: 1919543859444104, guid: 0796b331004a84744a609063dc845137, type: 3}
     poolSize: 26
   - objectPrefab: {fileID: 1747855628567470, guid: 99f0252a0079f694aa521693558bdc7b, type: 3}
