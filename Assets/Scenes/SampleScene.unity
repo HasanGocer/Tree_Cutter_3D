@@ -2892,7 +2892,7 @@ MonoBehaviour:
   - objectPrefab: {fileID: 1260334799937022, guid: 2b28f2fdc5a65964f96ea4d2b9d6ca63, type: 3}
     poolSize: 200
   - objectPrefab: {fileID: 1575721338728490, guid: 4171bb92c5c591848b14be1db6f3efe2, type: 3}
-    poolSize: 26
+    poolSize: 200
   - objectPrefab: {fileID: 1575721338728490, guid: 4171bb92c5c591848b14be1db6f3efe2, type: 3}
     poolSize: 26
   - objectPrefab: {fileID: 1919543859444104, guid: 0796b331004a84744a609063dc845137, type: 3}
